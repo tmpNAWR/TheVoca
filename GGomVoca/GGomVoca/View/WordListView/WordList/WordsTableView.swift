@@ -36,14 +36,14 @@ struct WordsTableView: View {
                 }
                 
                 switch viewModel.nationality {
-                case "KO", "JA":
+                case Nationality.KO.rawValue, Nationality.JA.rawValue:
                     Text("단어")
                         .headerText()
                     Text("발음")
                         .headerText()
                     Text("뜻")
                         .headerText()
-                case "EN", "FR":
+                case Nationality.EN.rawValue, Nationality.FR.rawValue:
                     Text("단어")
                         .headerText()
                     Text("뜻")
@@ -64,7 +64,7 @@ struct WordsTableView: View {
             List($viewModel.words, id: \.self, selection: $multiSelection) { $word in
                 HStack {
                     switch viewModel.nationality {
-                    case "KO", "JA":
+                    case Nationality.KO.rawValue, Nationality.JA.rawValue:
                         HStack {
                             Text(word.word ?? "")
                                 .listCellText(isSelectionMode: isSelectionMode)

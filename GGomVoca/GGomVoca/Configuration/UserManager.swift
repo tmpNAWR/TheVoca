@@ -28,13 +28,13 @@ final class UserManager {
     // MARK: 단어장 추가
     static func addVocabulary(id: String, nationality: String) {
         switch nationality {
-        case "KO":
+        case Nationality.KO.rawValue:
             shared.koreanVocabularyIDs.append(id)
-        case "EN":
+        case Nationality.EN.rawValue:
             shared.englishVocabularyIDs.append(id)
-        case "JA":
+        case Nationality.JA.rawValue:
             shared.japanishVocabularyIDs.append(id)
-        case "FR":
+        case Nationality.FR.rawValue:
             shared.frenchVocabularyIDs.append(id)
         default:
             break
