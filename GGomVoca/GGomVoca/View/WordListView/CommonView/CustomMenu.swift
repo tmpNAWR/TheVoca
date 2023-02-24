@@ -27,10 +27,11 @@ struct CustomMenu: UIViewRepresentable {
 
     func updateUIView(_ uiView: MenuButton, context: Context) {
         uiView.updateVocaEmpty(isVocaEmpty)
-        print("CustomMenu Data---------------------------")
-        print("currentMode: \(currentMode), currentOrder: \(orderMode)")
         uiView.updateMode(mode: currentMode)
         uiView.updateOrder(order: orderMode)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            uiView.renderingMenu()
+        }
     }
 }
 
@@ -46,6 +47,7 @@ class MenuButton: UIButton {
 
       var isVocaEmpty: Bool
 
+
      init(frame: CGRect, currentMode: Binding<ProfileSection>,  orderMode: Binding<Order>, speakOn: Binding<Bool>, testOn: Binding<Bool>, editOn: Binding<Bool>, isImportVoca: Binding<Bool>, isExportVoca: Binding<Bool>, isCheckResult: Binding<Bool>, isVocaEmpty: Bool) {
           self._currentMode = currentMode
           self._orderMode = orderMode
@@ -57,37 +59,35 @@ class MenuButton: UIButton {
           self._isCheckResult = isCheckResult
           self.isVocaEmpty = isVocaEmpty
           super.init(frame: frame)
+
           renderingMenu()
 
       }
+      // SwiftUI View (State) - UIRepresentable (Binding) - UIKit (Binding)
+    // UIKit
+    // makeUIView
+    // 이게 최초 호출시
+    // updateUIView
+    // 이게 내부값 변경시 호출
 
       required init?(coder: NSCoder) {
           fatalError("init(coder:) has not been implemented")
       }
 
       func updateMode(mode: ProfileSection) {
-          print("updateMode-----------------------------------")
-          print("SwiftUI mode state: \(mode), UIKit mode state: \(currentMode)")
           self.currentMode = mode
-          print("SwiftUI mode state: \(mode), UIKit mode state: \(self.currentMode)")
           renderingMenu()
       }
 
       func updateOrder(order: Order) {
-          print("updateOrder-----------------------------------")
-          print("SwiftUI order state: \(order), UIKit order state: \(orderMode)")
           self.orderMode = order
-          print("SwiftUI order state: \(order), UIKit order state: \(self.orderMode)")
           renderingMenu()
       }
 
       func updateVocaEmpty(_ current: Bool) {
-          print("updateVocaEmpty-----------------------------------")
-          print("SwiftUI isVocaEmpty state: \(current), UIKit isVocaEmpty state: \(isVocaEmpty)")
           if current != isVocaEmpty {
               self.isVocaEmpty.toggle()
           }
-          print("SwiftUI isVocaEmpty state: \(current), UIKit isVocaEmpty state: \(self.isVocaEmpty)")
           renderingMenu()
       }
 
@@ -108,7 +108,7 @@ class MenuButton: UIButton {
 
           // MARK: Conditionally disabled
           if isVocaEmpty {
-              return UIMenu(title: "보기 모드".localized, subtitle: "\(currentMode.rawValue.localized)", image: UIImage(systemName: "eye.fill"), children: [])
+            return UIMenu(title: "보기 모드".localized, subtitle: "\(currentMode.rawValue.localized)", image: UIImage(systemName: "eye.fill"), children: [])
           }
 
           return UIMenu(title: "보기 모드".localized, subtitle: "\(currentMode.rawValue.localized)", image: UIImage(systemName: "eye.fill"), children: [seeAll, seeWord, seeMeaning])
@@ -121,7 +121,7 @@ class MenuButton: UIButton {
 
           // MARK: Conditionally disabled
           if isVocaEmpty {
-              return UIMenu(title: "정렬".localized, subtitle: "\(orderMode.rawValue.localized)", image: UIImage(systemName: "arrow.up.arrow.down"), children: [])
+            return UIMenu(title: "정렬".localized, subtitle: "\(orderMode.rawValue.localized)", image: UIImage(systemName: "arrow.up.arrow.down"), children: [])
           }
           return UIMenu(title: "정렬".localized, subtitle: "\(orderMode.rawValue.localized)", image: UIImage(systemName: "arrow.up.arrow.down"), children: [orderByRandom, orderByDict, orderByDate])
       }
@@ -147,50 +147,46 @@ class MenuButton: UIButton {
       func takeTest() -> UIAction {
           UIAction(title: "시험 보기".localized,
                    image: UIImage(systemName: "square.and.pencil")) { action in
-              self.testOn.toggle()
+            self.testOn.toggle()
           }
       }
 
       func listenAll() -> UIAction {
           UIAction(title: "전체 단어 듣기".localized,
                    image: UIImage(systemName: "speaker.wave.3")) { action in
-              self.speakOn.toggle()
+            self.speakOn.toggle()
           }
       }
 
       func editVoca() -> UIAction {
           UIAction(title: "단어 선택하기".localized,
                    image: UIImage(systemName: "checkmark.circle")) { action in
-              self.editOn.toggle()
+            self.editOn.toggle()
           }
       }
 
       func importVoca() -> UIAction {
           UIAction(title: "단어장 가져오기".localized,
                    image: UIImage(systemName: "square.and.arrow.down")) { action in
-              self.isImportVoca.toggle()
+            self.isImportVoca.toggle()
           }
       }
 
       func exportVoca() -> UIAction {
           UIAction(title: "단어장 내보내기".localized,
                    image: UIImage(systemName: "square.and.arrow.up")) { action in
-              self.isExportVoca.toggle()
+            self.isExportVoca.toggle()
           }
       }
 
       func checkResult() -> UIAction {
           UIAction(title: "시험 결과 보기".localized,
                    image: UIImage(systemName: "chart.line.uptrend.xyaxis")) { action in
-              self.isCheckResult.toggle()
+            self.isCheckResult.toggle()
           }
       }
 
       func renderingMenu() {
-          print("rendering Menu function started -----------------------")
-          print("UIKit isVocaEmpty: \(isVocaEmpty)")
-          print("UIKit mode: \(currentMode)")
-          print("UIKit order: \(orderMode)")
           let testMenu = self.testMenu()
           // 시험 보기
           let takeTest = self.takeTest()
