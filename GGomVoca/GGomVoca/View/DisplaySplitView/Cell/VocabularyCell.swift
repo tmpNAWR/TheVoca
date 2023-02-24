@@ -13,16 +13,9 @@ struct VocabularyCell: View {
     //단어장 고정하기 completion Handler
     var pinnedCompletion: (UUID) -> ()
     //단어장 삭제 completion Handler
-    var deleteCompletion : () -> ()
+    var deleteCompletion : (UUID) -> ()
     @Binding var selectedVocabulary: Vocabulary?
     var vocabulary: Vocabulary
-    
-    // MARK: UserDefaults
-    @AppStorage("pinnedVocabularyIDs")   var pinnedVocabularyIDs  : [String]?
-    @AppStorage("koreanVocabularyIDs")   var koreanVocabularyIDs  : [String]?
-    @AppStorage("englishVocabularyIDs")  var englishVocabularyIDs : [String]?
-    @AppStorage("japanishVocabularyIDs") var japanishVocabularyIDs: [String]?
-    @AppStorage("frenchVocabularyIDs")   var frenchVocabularyIDs  : [String]?
     
     // MARK: View Properties
     @State private var deleteActionSheet: Bool = false
@@ -34,13 +27,13 @@ struct VocabularyCell: View {
     
     private var natianalityIcon: String {
         switch vocabulary.nationality {
-        case "KO":
+        case Nationality.KO.rawValue:
             return "🇰🇷"
-        case "EN":
+        case Nationality.EN.rawValue:
             return "🇺🇸"
-        case "JA":
+        case Nationality.JA.rawValue:
             return "🇯🇵"
-        case "FR":
+        case Nationality.FR.rawValue:
             return "🇫🇷"
         default:
             return ""
@@ -81,8 +74,7 @@ struct VocabularyCell: View {
                 var words = vocabulary.words?.allObjects as? [Word] ?? []
                 words = words.filter { $0.deletedAt != nil }
                 if words.isEmpty {
-                   
-                    deleteCompletion()
+                    deleteCompletion(vocabulary.id!)
                     UserManager.deleteVocabulary(id: vocabulary.id!.uuidString)
                 } else if UIDevice.current.model == "iPhone" {
                     deleteActionSheet = true
@@ -93,15 +85,15 @@ struct VocabularyCell: View {
                 /// - 삭제하는 단어장이 detail View에 띄워져 있는 경우 지워줌
                 if selectedVocabulary == vocabulary {
                     selectedVocabulary = nil
-                }                
+                }
             } label: {
                 Label("Delete", systemImage: "trash.fill")
             }
         }
         .contextMenu {
             Button {
-               
                 pinnedCompletion(vocabulary.id!)
+                UserManager.pinnedVocabulary(id: vocabulary.id!.uuidString, nationality: vocabulary.nationality!)
             } label: {
                 if vocabulary.isPinned {
                     HStack {
@@ -117,7 +109,7 @@ struct VocabularyCell: View {
                     }
                 }
             }
-
+            
             Button {
                 editVocabularyName.toggle()
             } label: {
@@ -140,8 +132,7 @@ struct VocabularyCell: View {
                         message: Text("단어장에 포함된 모든 단어가 삭제됩니다.\n삭제된 단어장은 최근 삭제된 단어장에서 확인할 수 있습니다."),
                         buttons: [
                             .destructive(Text("단어장 삭제")) {
-                               
-                                deleteCompletion()
+                                deleteCompletion(vocabulary.id!)
                                 UserManager.deleteVocabulary(id: vocabulary.id!.uuidString)
                             },
                             .cancel(Text("취소"))
@@ -152,21 +143,20 @@ struct VocabularyCell: View {
             Alert(title: Text("'\(vocabulary.name ?? "")' 단어장을 삭제 하시겠습니까?"),
                   message: Text("단어장에 포함된 모든 단어가 삭제됩니다.\n삭제된 단어장은 최근 삭제된 단어장에서 확인할 수 있습니다."),
                   primaryButton: .destructive(Text("단어장 삭제")) {
-//                   
-                    deleteCompletion() //삭제 후 업데이트
-                   
-                    },
+                deleteCompletion(vocabulary.id!) //삭제 후 업데이트
+                UserManager.deleteVocabulary(id: vocabulary.id!.uuidString)
+            },
                   secondaryButton: .cancel(Text("취소")))
         }
         // !!!: 추후 confirmationDialog가 안정화 되면 actionSheet대신 적용
-//        .confirmationDialog("단어장 삭제", isPresented: $deleteAlert) {
-//            Button("단어장 삭제", role: .destructive) {
-//                vm.updateDeletedData(id: vocabulary.id!)
-//                deleteCompletion()
-//            }
-//        } message: {
-//            Text("포함된 단어도 모두 삭제됩니다.")
-//        }
+        //        .confirmationDialog("단어장 삭제", isPresented: $deleteAlert) {
+        //            Button("단어장 삭제", role: .destructive) {
+        //                vm.updateDeletedData(id: vocabulary.id!)
+        //                deleteCompletion()
+        //            }
+        //        } message: {
+        //            Text("포함된 단어도 모두 삭제됩니다.")
+        //        }
     }
 }
 

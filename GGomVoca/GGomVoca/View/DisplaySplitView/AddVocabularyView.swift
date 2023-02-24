@@ -35,7 +35,7 @@ struct AddVocabularyView: View {
 
                 Picker(selection: $nationality, label: Text("공부하는 언어")) {
                     ForEach(Nationality.allCases, id: \.rawValue) { nationality in
-                        Text(nationality.rawValue)
+                      Text(nationality.rawValue.localized)
                             .tag(nationality)
                     }
                 }
@@ -52,7 +52,7 @@ struct AddVocabularyView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("완료") {
                         //addVocabulary() // MARK: Deprecated
-                        addCompletion(self.vocabularyName, "\(self.nationality)")
+                        addCompletion(self.vocabularyName, self.nationality.rawValue)
                         dismiss()
                     }
                     /// - 단어장 이름이 공백인 경우 버튼 비활성화

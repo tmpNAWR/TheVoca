@@ -19,6 +19,7 @@ final class ImportCSVFileViewModel {
         newWord.option = option
         newWord.vocabulary = vocabulary
         newWord.vocabularyID = vocabulary.id
+        newWord.createdAt = "\(Date())"
         
         saveContext()
     }

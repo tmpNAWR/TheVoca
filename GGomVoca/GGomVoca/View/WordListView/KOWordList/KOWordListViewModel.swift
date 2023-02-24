@@ -22,7 +22,7 @@ class KOWordListViewModel: ObservableObject {
     
   // MARK: Vocabulary Properties
   var selectedVocabulary: Vocabulary = Vocabulary()
-  var nationality: String = "KO"
+  var nationality: String = Nationality.KO.rawValue
 
   @Published var words: [Word] = []
 
@@ -116,13 +116,13 @@ class KOWordListViewModel: ObservableObject {
   func getEmptyWord() -> String {
     var emptyMsg: String {
       switch nationality {
-      case "KO":
+      case Nationality.KO.rawValue:
         return "비어 있는"
-      case "EN":
+      case Nationality.EN.rawValue:
         return "Empty"
-      case "JA":
+      case Nationality.JA.rawValue:
         return "空っぽの"
-      case "FR":
+      case Nationality.FR.rawValue:
         return "Vide"
       case "CH":
         return "空"

@@ -25,14 +25,14 @@ struct GGomVocaApp: App {
     var body: some Scene {
         WindowGroup {
             // environment -> view에 접근
-//            DisplaySplitView()
             DependencyManager.shared.resolve(DisplaySplitView.self)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
     
     // MARK: DI
-    init(){
+    init() {
         DependencyManager.shared.register()
+        UserManager.shared.sync() 
     }
 }

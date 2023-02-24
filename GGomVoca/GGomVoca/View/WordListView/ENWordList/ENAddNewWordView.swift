@@ -59,7 +59,7 @@ struct ENAddNewWordView: View {
                     HStack {
                         Text("단어")
                         if isWordEmpty {
-                            Text("\(Image(systemName: "exclamationmark.circle")) 필수 입력 항목입니다.")
+                          Text("\(Image(systemName: "exclamationmark.circle")) 필수 입력 항목입니다.")
                         }
                     }
                 }
@@ -81,12 +81,21 @@ struct ENAddNewWordView: View {
                             }
                         }
                     }
-                  Button("\(Image(systemName: "plus.circle")) \(meanings.count + 1)번째 뜻 추가하기") { meanings.append("") }
+//                  Button("\(Image(systemName: "plus.circle")) \(meanings.count + 1)번째 뜻 추가하기") { meanings.append("") }
+                    Button {
+                        meanings.append("")
+                    } label: {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("\(meanings.count + 1)번째 뜻 추가하기")
+                        }
+                    }
+
                 } header: {
                     HStack {
                         Text("뜻")
                         if isMeaningEmpty {
-                            Text("\(Image(systemName: "exclamationmark.circle")) 필수 입력 항목입니다.")
+                            Text("\(Image(systemName: "exclamationmark.circle")) 사용하지 않는 입력 필드는 삭제해주세요.")
                         }
                     }
                 }
@@ -132,6 +141,7 @@ struct ENAddNewWordView: View {
                             wordFocused = true
                         }
                     }
+                    .disabled(word.isEmpty || meanings[0].isEmpty)
                 }
             }
         }
