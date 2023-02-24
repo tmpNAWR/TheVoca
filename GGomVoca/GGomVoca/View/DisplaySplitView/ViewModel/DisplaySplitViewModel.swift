@@ -97,7 +97,6 @@ class DisplaySplitViewModel : ObservableObject {
         if let vocaIndex = vocabularyList.firstIndex(where: { $0.id?.uuidString ?? "" == vocaId }) {
             vocabulary = vocabularyList[vocaIndex]
         }
-        
         return vocabulary
     }
     

@@ -23,7 +23,7 @@ struct PersistenceController {
         //관리 개체 컨텍스트를 기본 영구 저장소에 연결하는 데 사용
             let description = NSPersistentStoreDescription()
             description.type = NSSQLiteStoreType
-            description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.LikeLion.GGomVoca")
+            description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.NAWR.GGomVoca")
             description.shouldInferMappingModelAutomatically = true
             description.shouldMigrateStoreAutomatically = true
             

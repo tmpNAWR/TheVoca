@@ -31,8 +31,7 @@ class VocabularyServiceImpl: VocabularyService{
 //                return self.coreDataRepo.fetchVocaListData()} //동기화된 CoreData 데이터 불러오기
            .eraseToAnyPublisher()
            
-    
-       return publisher
+        return publisher
     }
     
     //MARK: 단어장 추가하기
