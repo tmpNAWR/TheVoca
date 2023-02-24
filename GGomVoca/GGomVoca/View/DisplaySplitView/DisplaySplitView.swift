@@ -25,6 +25,8 @@ struct DisplaySplitView: View {
     @State private var selectedVocabulary : Vocabulary?
     /// - 개발자 뷰 show flag
     @State private var isShowingContributor: Bool = false
+    /// - 정보(앱 버전, 라이선스) 뷰 show flag
+    @State private var isShowingInformation: Bool = false
     /// - 단어장 추가 뷰 show flag
     @State private var isShowingAddVocabulary: Bool = false
     /// - EditMode
@@ -104,6 +106,12 @@ struct DisplaySplitView: View {
                             Text("피드백")
                             Image(systemName: "list.bullet.clipboard")
                         }
+                        Button {
+                            isShowingInformation.toggle()
+                        } label: {
+                            Text("정보")
+                            Image(systemName: "info.circle")
+                        }
                     }
                 } label: {
                     Image(systemName: "exclamationmark.circle")
@@ -128,6 +136,9 @@ struct DisplaySplitView: View {
         }
         .sheet(isPresented: $isShowingContributor) {
             ContributorsView()
+        }
+        .sheet(isPresented: $isShowingInformation) {
+            InformationView()
         }
         .sheet(isPresented: $isShowingAddVocabulary) {
             AddVocabularyView(addCompletion:{  name , nationality in
