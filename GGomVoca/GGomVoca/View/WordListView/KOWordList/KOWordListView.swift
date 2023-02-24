@@ -214,11 +214,9 @@ struct KOWordListView: View {
                   ToolbarItem {
                     CustomMenu(currentMode: $selectedSegment, orderMode: $selectedOrder, speakOn: $speakOn, testOn: $isTestMode, editOn: $isSelectionMode, isImportVoca: $isImportVoca, isExportVoca: $isExport, isCheckResult: $isCheckResult, isVocaEmpty: $isVocaEmpty)
                           .onChange(of: selectedSegment) { _ in
-                              print("View Mode 변경: \(selectedSegment)")
                               unmaskedWords = []
                           }
                           .onChange(of: selectedOrder) { value in
-                              print("Order 변경: \(selectedOrder)")
                               switch value {
                               case .byRandom:
                                   viewModel.words.shuffle()

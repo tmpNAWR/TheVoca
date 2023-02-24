@@ -212,7 +212,6 @@ struct JPWordListView: View {
                 ToolbarItem {
                   CustomMenu(currentMode: $selectedSegment, orderMode: $selectedOrder, speakOn: $speakOn, testOn: $isTestMode, editOn: $isSelectionMode, isImportVoca: $isImportVoca, isExportVoca: $isExport, isCheckResult: $isCheckResult, isVocaEmpty: $isVocaEmpty)
                         .onChange(of: selectedSegment) { _ in
-                            print("selectedSegment Changed")
                             unmaskedWords = []
                         }
                         .onChange(of: selectedOrder) { value in
