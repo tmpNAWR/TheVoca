@@ -22,16 +22,6 @@
 			<key>Key</key>
 			<string>APP_VERSION</string>
 		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>Title</key>
-			<string>개발자</string>
-			<key>Key</key>
-			<string>CONTRIBUTOR</string>
-			<key>File</key>
-			<string>Contributor</string>
-		</dict>
 	</array>
 </dict>
 </plist>

@@ -23,6 +23,10 @@ struct DisplaySplitView: View {
     @State private var splitViewVisibility: NavigationSplitViewVisibility = .all
     /// - NavigationSplitView 선택 단어장 Id
     @State private var selectedVocabulary : Vocabulary?
+    /// - 개발자 뷰 show flag
+    @State private var isShowingContributor: Bool = false
+    /// - 정보(앱 버전, 라이선스) 뷰 show flag
+    @State private var isShowingInformation: Bool = false
     /// - 단어장 추가 뷰 show flag
     @State private var isShowingAddVocabulary: Bool = false
     /// - EditMode
@@ -86,6 +90,34 @@ struct DisplaySplitView: View {
         }
         .navigationBarTitle("단어장")
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Section {
+                        Button {
+                            isShowingContributor.toggle()
+                        } label: {
+                            Text("개발자")
+                            Image(systemName: "person")
+                        }
+                    }
+                    
+                    Section {
+                        Link(destination: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSfLuDIOKmmJCLQHWsGeG30cDclpGivhCv94nFCUxtUGSmF8DA/viewform?usp=sf_link")!) {
+                            Text("피드백")
+                            Image(systemName: "list.bullet.clipboard")
+                        }
+                        Button {
+                            isShowingInformation.toggle()
+                        } label: {
+                            Text("정보")
+                            Image(systemName: "info.circle")
+                        }
+                    }
+                } label: {
+                    Image(systemName: "exclamationmark.circle")
+                }
+            }
+            
             ToolbarItemGroup(placement: .bottomBar) {
                 Spacer()
                 Button {
@@ -101,6 +133,12 @@ struct DisplaySplitView: View {
                 }
                 .disabled(editMode == .active)
             }
+        }
+        .sheet(isPresented: $isShowingContributor) {
+            ContributorsView()
+        }
+        .sheet(isPresented: $isShowingInformation) {
+            InformationView()
         }
         .sheet(isPresented: $isShowingAddVocabulary) {
             AddVocabularyView(addCompletion:{  name , nationality in

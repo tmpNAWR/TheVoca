@@ -70,12 +70,15 @@
 		63EA4AE92987B0B5009392EE /* EditVocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA4AE82987B0B5009392EE /* EditVocabularyView.swift */; };
 		C08DB58F2989FCD700403F59 /* MyNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DB58E2989FCD700403F59 /* MyNoteView.swift */; };
 		C08DB5EE298CD27600403F59 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08DB5ED298CD27600403F59 /* SpeechSynthesizer.swift */; };
+		EA03DA0929A912B900281ACA /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03DA0829A912B900281ACA /* InformationView.swift */; };
+		EA03DA0B29A912D500281ACA /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA03DA0A29A912D500281ACA /* LicenseView.swift */; };
 		EA1F3A1529960A7100C9D25E /* EmptyTestModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1F3A1429960A7100C9D25E /* EmptyTestModeView.swift */; };
 		EA30AF9829778FE200C49CF3 /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30AF9729778FE200C49CF3 /* WordListView.swift */; };
 		EA30AF9A2977908200C49CF3 /* WordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA30AF992977908200C49CF3 /* WordsTableView.swift */; };
 		EA4753F4299C9745002C9358 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EA4753F3299C9745002C9358 /* Settings.bundle */; };
 		EAB4FFA92977C8830070941A /* SwipeContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4FFA82977C8830070941A /* SwipeContainerCell.swift */; };
 		EAB4FFAD2977C8FD0070941A /* CellButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB4FFAC2977C8FD0070941A /* CellButtonView.swift */; };
+		EAE084E029A90FEB00A9539A /* ContributorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE084DF29A90FEB00A9539A /* ContributorsView.swift */; };
 		EAEF31632989F488009CE764 /* iPhoneWordTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF31622989F488009CE764 /* iPhoneWordTestView.swift */; };
 		EAEF31652989F84F009CE764 /* TestScopeSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF31642989F84F009CE764 /* TestScopeSelectView.swift */; };
 		EAEF3167298A4205009CE764 /* WordTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF3166298A4205009CE764 /* WordTestResultView.swift */; };
@@ -180,12 +183,15 @@
 		63EA4AE82987B0B5009392EE /* EditVocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVocabularyView.swift; sourceTree = "<group>"; };
 		C08DB58E2989FCD700403F59 /* MyNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNoteView.swift; sourceTree = "<group>"; };
 		C08DB5ED298CD27600403F59 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
+		EA03DA0829A912B900281ACA /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		EA03DA0A29A912D500281ACA /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
 		EA1F3A1429960A7100C9D25E /* EmptyTestModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTestModeView.swift; sourceTree = "<group>"; };
 		EA30AF9729778FE200C49CF3 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
 		EA30AF992977908200C49CF3 /* WordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsTableView.swift; sourceTree = "<group>"; };
 		EA4753F3299C9745002C9358 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		EAB4FFA82977C8830070941A /* SwipeContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeContainerCell.swift; sourceTree = "<group>"; };
 		EAB4FFAC2977C8FD0070941A /* CellButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtonView.swift; sourceTree = "<group>"; };
+		EAE084DF29A90FEB00A9539A /* ContributorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributorsView.swift; sourceTree = "<group>"; };
 		EAEF31622989F488009CE764 /* iPhoneWordTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneWordTestView.swift; sourceTree = "<group>"; };
 		EAEF31642989F84F009CE764 /* TestScopeSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScopeSelectView.swift; sourceTree = "<group>"; };
 		EAEF3166298A4205009CE764 /* WordTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordTestResultView.swift; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 				162EE03729507A690065E103 /* WordListView */,
 				63DB052C299A295C008DBAD6 /* WordTest */,
 				C08DB58D2989FC9600403F59 /* MyNoteView */,
+				EAE084DE29A90FD400A9539A /* SettingView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -479,6 +486,16 @@
 				16E1ECC0298B9A0800BA4C9C /* ShakeEffect.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		EAE084DE29A90FD400A9539A /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				EAE084DF29A90FEB00A9539A /* ContributorsView.swift */,
+				EA03DA0829A912B900281ACA /* InformationView.swift */,
+				EA03DA0A29A912D500281ACA /* LicenseView.swift */,
+			);
+			path = SettingView;
 			sourceTree = "<group>";
 		};
 		EE1E49FD2976700800890CF7 /* Configuration */ = {
@@ -701,6 +718,7 @@
 				03F904E829514B9B003262AE /* SearchingResultInMyWordsCell.swift in Sources */,
 				EE57C056295180BE004312CE /* DisplaySplitViewModel.swift in Sources */,
 				63EA4AD729875E00009392EE /* JPWordListView.swift in Sources */,
+				EA03DA0929A912B900281ACA /* InformationView.swift in Sources */,
 				63EA4AE229875E0A009392EE /* FRWordsTableView.swift in Sources */,
 				63EA4AE92987B0B5009392EE /* EditVocabularyView.swift in Sources */,
 				639B31EB298059CD00955DE4 /* WordListViewModel.swift in Sources */,
@@ -752,6 +770,7 @@
 				63DC85372950312E00461DEB /* Persistence.swift in Sources */,
 				6398595A2992429200E51C69 /* UbiquitousStorage.swift in Sources */,
 				EAB4FFA92977C8830070941A /* SwipeContainerCell.swift in Sources */,
+				EAE084E029A90FEB00A9539A /* ContributorsView.swift in Sources */,
 				63A9E2AC2995E65400F354E8 /* ProfileSection.swift in Sources */,
 				EA30AF9A2977908200C49CF3 /* WordsTableView.swift in Sources */,
 				164101612995FA37005C1854 /* EmptyMyNoteView.swift in Sources */,
@@ -774,6 +793,7 @@
 				16E1ECC3298C49E400BA4C9C /* FieldView.swift in Sources */,
 				63EA4AE329875E0A009392EE /* FREditWordView.swift in Sources */,
 				EE905661298CC4CE00E125C1 /* Vocabulary+CKRecord.swift in Sources */,
+				EA03DA0B29A912D500281ACA /* LicenseView.swift in Sources */,
 				EE759526298A3C0300AB6E62 /* CoreDataRepository.swift in Sources */,
 				63EA4AE629875E0A009392EE /* FRAddNewWordView.swift in Sources */,
 				63EA4AE429875E0A009392EE /* FRWordListViewModel.swift in Sources */,
