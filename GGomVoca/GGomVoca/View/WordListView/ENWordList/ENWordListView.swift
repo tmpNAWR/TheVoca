@@ -222,10 +222,9 @@ struct ENWordListView: View {
                                 case .byRandom:
                                     viewModel.words.shuffle()
                                 case .byAlphabetic:
-
-                                    viewModel.words.shuffle()
+                                    viewModel.words.sort(by: { $0.word! < $1.word! })
                                 default:
-                                    viewModel.words.shuffle()
+                                    viewModel.words.sort(by: { $0.createdAt ?? "0" < $1.createdAt ?? "0" })
                                 }
                             }
                             .onChange(of: speakOn) { value in
