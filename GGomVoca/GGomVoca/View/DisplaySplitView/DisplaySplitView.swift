@@ -23,6 +23,8 @@ struct DisplaySplitView: View {
     @State private var splitViewVisibility: NavigationSplitViewVisibility = .all
     /// - NavigationSplitView 선택 단어장 Id
     @State private var selectedVocabulary : Vocabulary?
+    /// - 개발자 뷰 show flag
+    @State private var isShowingContributor: Bool = false
     /// - 단어장 추가 뷰 show flag
     @State private var isShowingAddVocabulary: Bool = false
     /// - EditMode
@@ -86,6 +88,21 @@ struct DisplaySplitView: View {
         }
         .navigationBarTitle("단어장")
         .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Section {
+                        Button {
+                            isShowingContributor.toggle()
+                        } label: {
+                            Text("개발자")
+                            Image(systemName: "person")
+                        }
+                    }
+                } label: {
+                    Image(systemName: "exclamationmark.circle")
+                }
+            }
+            
             ToolbarItemGroup(placement: .bottomBar) {
                 Spacer()
                 Button {
@@ -101,6 +118,9 @@ struct DisplaySplitView: View {
                 }
                 .disabled(editMode == .active)
             }
+        }
+        .sheet(isPresented: $isShowingContributor) {
+            ContributorsView()
         }
         .sheet(isPresented: $isShowingAddVocabulary) {
             AddVocabularyView(addCompletion:{  name , nationality in
