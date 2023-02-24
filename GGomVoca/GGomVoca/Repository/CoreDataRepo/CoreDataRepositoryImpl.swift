@@ -124,6 +124,7 @@ class CoreDataRepositoryImpl : CoreDataRepository {
             newWord.word = word
             newWord.meaning = meaning
             newWord.option = option
+            newWord.createdAt = "\(Date())"
 
             self?.saveContext()
             observer(.success(newWord))
