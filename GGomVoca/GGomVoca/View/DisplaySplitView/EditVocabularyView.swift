@@ -44,18 +44,19 @@ struct EditVocabularyView: View {
             .navigationBarTitle("단어장 제목 변경")
             .onAppear {
                 inputVocabularyName = vocabulary.name ?? ""
-                switch vocabulary.nationality ?? "" {
-                case "KO":
-                    nationality = .KO
-                case "EN":
-                    nationality = .EN
-                case "JA":
-                    nationality = .JA
-                case "FR":
-                    nationality = .FR
-                default:
-                    break
-                }
+                nationality = Nationality(rawValue: vocabulary.nationality ?? "") ?? .KO
+//                switch vocabulary.nationality ?? "" {
+//                case "KO" :
+//                    nationality = .KO
+//                case "EN":
+//                    nationality = .EN
+//                case "JA":
+//                    nationality = .JA
+//                case "FR":
+//                    nationality = .FR
+//                default:
+//                    break
+//                }
                 print(nationality)
             }
             .toolbar {

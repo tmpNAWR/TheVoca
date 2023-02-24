@@ -27,13 +27,13 @@ struct VocabularyCell: View {
     
     private var natianalityIcon: String {
         switch vocabulary.nationality {
-        case "KO":
+        case Nationality.KO.rawValue:
             return "🇰🇷"
-        case "EN":
+        case Nationality.EN.rawValue:
             return "🇺🇸"
-        case "JA":
+        case Nationality.JA.rawValue:
             return "🇯🇵"
-        case "FR":
+        case Nationality.FR.rawValue:
             return "🇫🇷"
         default:
             return ""

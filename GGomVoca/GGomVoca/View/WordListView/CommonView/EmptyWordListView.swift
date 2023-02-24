@@ -12,13 +12,13 @@ struct EmptyWordListView: View {
     var lang: String
     var langNationality: Nationality {
         switch lang {
-        case "KO":
+        case Nationality.KO.rawValue:
             return .KO
-        case "EN":
+        case Nationality.EN.rawValue:
             return .EN
-        case "FR":
+        case Nationality.FR.rawValue:
             return .FR
-        case "JA":
+        case Nationality.JA.rawValue:
             return .JA
         default:
             return .KO
@@ -26,13 +26,13 @@ struct EmptyWordListView: View {
     }
     var emptyByLang: String {
         switch lang {
-        case "KO":
+        case Nationality.KO.rawValue:
             return "비어 있는"
-        case "EN":
+        case Nationality.EN.rawValue:
             return "empty"
-        case "FR":
+        case Nationality.FR.rawValue:
             return "vide"
-        case "JA":
+        case Nationality.JA.rawValue:
             return "空っぽの"
         default:
             return ""

@@ -52,7 +52,7 @@ struct AddVocabularyView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("완료") {
                         //addVocabulary() // MARK: Deprecated
-                        addCompletion(self.vocabularyName, "\(self.nationality)")
+                        addCompletion(self.vocabularyName, self.nationality.rawValue)
                         dismiss()
                     }
                     /// - 단어장 이름이 공백인 경우 버튼 비활성화

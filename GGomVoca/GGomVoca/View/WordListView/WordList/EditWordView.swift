@@ -54,7 +54,7 @@ struct EditWordView: View {
                 }
                 
                 switch viewModel.selectedVocabulary.nationality {
-                case "KO", "JA":
+                case Nationality.KO.rawValue, Nationality.JA.rawValue:
                     Section(header: Text("발음")) {
                         TextField("발음을 입력하세요.", text: $inputOption, axis: .vertical)
                             .textInputAutocapitalization(.never)

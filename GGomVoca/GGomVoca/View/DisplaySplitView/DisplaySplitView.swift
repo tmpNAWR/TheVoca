@@ -39,17 +39,17 @@ struct DisplaySplitView: View {
         } detail: {
             if let selectedVocabulary {
                 NavigationStack {
-                    switch selectedVocabulary.nationality {
-                    case "KO":
+                    switch Nationality(rawValue: selectedVocabulary.nationality ?? "") {
+                    case .KO:
                         KOWordListView(vocabularyID: selectedVocabulary.id)
                             .id(selectedVocabulary.id)
-                    case "EN" :
+                    case .EN :
                         ENWordListView(vocabularyID: selectedVocabulary.id)
                             .id(selectedVocabulary.id)
-                    case "JA" :
+                    case .JA :
                         JPWordListView(vocabularyID: selectedVocabulary.id)
                             .id(selectedVocabulary.id)
-                    case "FR" :
+                    case .FR :
                         FRWordListView(vocabularyID: selectedVocabulary.id)
                             .id(selectedVocabulary.id)
                     default:
