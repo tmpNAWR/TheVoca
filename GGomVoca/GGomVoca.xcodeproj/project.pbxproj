@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		03F904E529514A6E003262AE /* SearchingResultsInMyWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F904E429514A6E003262AE /* SearchingResultsInMyWordsView.swift */; };
 		03F904E829514B9B003262AE /* SearchingResultInMyWordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F904E729514B9B003262AE /* SearchingResultInMyWordsCell.swift */; };
+		162343D029A894AA00FE4E1A /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162343CF29A894AA00FE4E1A /* Order.swift */; };
 		1641015D2995705B005C1854 /* CustomMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1641015C2995705B005C1854 /* CustomMenu.swift */; };
 		164101612995FA37005C1854 /* EmptyMyNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164101602995FA37005C1854 /* EmptyMyNoteView.swift */; };
 		165BA9792987861D0067F217 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165BA9782987861D0067F217 /* String+.swift */; };
@@ -112,6 +113,7 @@
 /* Begin PBXFileReference section */
 		03F904E429514A6E003262AE /* SearchingResultsInMyWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingResultsInMyWordsView.swift; sourceTree = "<group>"; };
 		03F904E729514B9B003262AE /* SearchingResultInMyWordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchingResultInMyWordsCell.swift; sourceTree = "<group>"; };
+		162343CF29A894AA00FE4E1A /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		1641015C2995705B005C1854 /* CustomMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenu.swift; sourceTree = "<group>"; };
 		164101602995FA37005C1854 /* EmptyMyNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMyNoteView.swift; sourceTree = "<group>"; };
 		165BA9782987861D0067F217 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				EE57C05329517F81004312CE /* Nationality.swift */,
 				16FFDC58297A6D680082007C /* CSVFile.swift */,
 				63A9E2AB2995E65400F354E8 /* ProfileSection.swift */,
+				162343CF29A894AA00FE4E1A /* Order.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				EE57C05429517F81004312CE /* Nationality.swift in Sources */,
 				63EA4AC029875DE8009392EE /* KOWordsTableView.swift in Sources */,
 				63EA4ABD29875DE8009392EE /* KOEditWordView.swift in Sources */,
+				162343D029A894AA00FE4E1A /* Order.swift in Sources */,
 				639B31ED29806E1700955DE4 /* AddNewWordView.swift in Sources */,
 				EAEF31652989F84F009CE764 /* TestScopeSelectView.swift in Sources */,
 				EE75952D298A5BAC00AB6E62 /* VocabularyServiceImpl.swift in Sources */,

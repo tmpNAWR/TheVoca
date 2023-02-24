@@ -25,7 +25,7 @@ struct FRWordListView: View {
     @State var isCheckResult: Bool = false
     @State var selectedSegment: ProfileSection = .normal
 
-    @State var selectedOrder: String = "등록순 정렬"
+    @State var selectedOrder: Order = .byRegistered
     @State var speakOn: Bool = false
 
     @State var isVocaEmpty: Bool = false
@@ -89,6 +89,10 @@ struct FRWordListView: View {
                 navigationTitle = viewModel.selectedVocabulary.name ?? ""
                 if viewModel.words.isEmpty {
                     isVocaEmpty = true
+                    selectedOrder = .byRegistered
+                } else {
+                    isVocaEmpty = false
+                    selectedOrder = .byRegistered
                 }
                 emptyMessage = viewModel.getEmptyWord()
             }
@@ -215,9 +219,10 @@ struct FRWordListView: View {
                             }
                             .onChange(of: selectedOrder) { value in
                                 switch value {
-                                case "랜덤 정렬":
+                                case .byRandom:
                                     viewModel.words.shuffle()
-                                case "사전순 정렬":
+                                case .byAlphabetic:
+
                                     viewModel.words.shuffle()
                                 default:
                                     viewModel.words.shuffle()

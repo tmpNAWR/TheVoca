@@ -25,7 +25,7 @@ struct JPWordListView: View {
     @State var isCheckResult: Bool = false
     @State var selectedSegment: ProfileSection = .normal
 
-    @State var selectedOrder: String = "등록순 정렬"
+    @State var selectedOrder: Order = .byRegistered
     @State var speakOn: Bool = false
 
     @State var isVocaEmpty: Bool = false
@@ -86,6 +86,10 @@ struct JPWordListView: View {
               navigationTitle = viewModel.selectedVocabulary.name ?? ""
               if viewModel.words.isEmpty {
                   isVocaEmpty = true
+                  selectedOrder = .byRegistered
+              } else {
+                  isVocaEmpty = false
+                  selectedOrder = .byRegistered
               }
               emptyMessage = viewModel.getEmptyWord()
           }
@@ -213,12 +217,13 @@ struct JPWordListView: View {
                         }
                         .onChange(of: selectedOrder) { value in
                             switch value {
-                            case "랜덤 정렬":
-                            viewModel.words.shuffle()
-                            case "사전순 정렬":
-                            viewModel.words.shuffle()
+                            case .byRandom:
+                                viewModel.words.shuffle()
+                            case .byAlphabetic:
+
+                                viewModel.words.shuffle()
                             default:
-                            viewModel.words.shuffle()
+                                viewModel.words.shuffle()
                             }
                         }
                         .onChange(of: speakOn) { value in
