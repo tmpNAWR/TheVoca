@@ -18,7 +18,7 @@ struct AddVocabularyView: View {
     // MARK: View Properties
     @FocusState private var focusingVocabularyTitle: Bool
     @State var inputVocabularyName: String = ""
-    @State var nationality: Nationality = Nationality.KO
+    @State var nationality: Nationality = Nationality.EN
     
     /// - 입력값 양옆 공백 제거
     var vocabularyName: String {
