@@ -102,7 +102,7 @@ struct DisplaySplitView: View {
                     }
                     
                     Section {
-                        Link(destination: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSfLuDIOKmmJCLQHWsGeG30cDclpGivhCv94nFCUxtUGSmF8DA/viewform?usp=sf_link")!) {
+                        Link(destination: URL(string: "https://forms.gle/fen5EEQmhuJNycVF9")!) {
                             Text("피드백")
                             Image(systemName: "list.bullet.clipboard")
                         }
