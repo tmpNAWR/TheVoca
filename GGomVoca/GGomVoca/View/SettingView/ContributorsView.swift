@@ -22,7 +22,7 @@ extension TempNAWR {
             name: "고정민",
             image: "https://avatars.githubusercontent.com/u/68258365?v=4",
             github: "https://github.com/eigen98",
-            email: "ehvkddl@gmail.com",
+            email: "ko_su@naver.com",
             task: "iOS Client Developer"
         ),
         TempNAWR(
@@ -43,7 +43,7 @@ extension TempNAWR {
             name: "백수민",
             image: "https://avatars.githubusercontent.com/u/73203944?v=4",
             github: "https://github.com/steady-on",
-            email: "ehvkddl@gmail.com",
+            email: "whitebsm93@gmail.com",
             task: "PM, iOS Client Developer"
         ),
         TempNAWR(
