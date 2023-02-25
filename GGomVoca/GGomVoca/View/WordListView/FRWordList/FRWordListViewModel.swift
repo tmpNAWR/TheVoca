@@ -11,7 +11,7 @@ class FRFRWordListViewModel: ObservableObject {
    
     // MARK: Vocabulary Properties
     var selectedVocabulary: Vocabulary = Vocabulary()
-    var nationality: String = "FR"
+    var nationality: String = Nationality.FR.rawValue
 
     //MARK: Service
     var service : WordListService
