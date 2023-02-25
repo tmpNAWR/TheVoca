@@ -141,6 +141,13 @@ struct ImportCSVFileView: View {
                 print("error reading docs", error.localizedDescription)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Link(destination: URL(string: "https://bit.ly/thevoca")!) {
+                    Image(systemName: "questionmark.circle")
+                }
+            }
+        }
     }
 }
 

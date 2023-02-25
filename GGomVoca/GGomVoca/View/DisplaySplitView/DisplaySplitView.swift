@@ -102,8 +102,8 @@ struct DisplaySplitView: View {
                     }
                     
                     Section {
-                        Link(destination: URL(string: "https://forms.gle/fen5EEQmhuJNycVF9")!) {
-                            Text("피드백")
+                        Link(destination: URL(string: "https://bit.ly/thevoca")!) {
+                            Text("도움말 및 피드백")
                             Image(systemName: "list.bullet.clipboard")
                         }
                         Button {

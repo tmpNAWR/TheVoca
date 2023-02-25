@@ -158,8 +158,10 @@ struct JPWordListView: View {
               // TODO: 편집모드에 따른 toolbar State 분기
               if !isSelectionMode, speechSynthesizer.isPlaying { // 전체 발음 듣기 모드
                   ToolbarItem {
-                      Button("취소", role: .cancel) {
+                      Button(role: .cancel) {
                           speechSynthesizer.stopSpeaking()
+                      } label: {
+                          Image(systemName: "square.fill")
                       }
                   }
               } else if isSelectionMode {  // 편집 모드
