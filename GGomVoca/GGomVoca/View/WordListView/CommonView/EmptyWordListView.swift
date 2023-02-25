@@ -10,29 +10,16 @@ import SwiftUI
 struct EmptyWordListView: View {
     
     var lang: String
-    var langNationality: Nationality {
-        switch lang {
-        case Nationality.KO.rawValue:
-            return .KO
-        case Nationality.EN.rawValue:
-            return .EN
-        case Nationality.FR.rawValue:
-            return .FR
-        case Nationality.JA.rawValue:
-            return .JA
-        default:
-            return .KO
-        }
-    }
+
     var emptyByLang: String {
-        switch lang {
-        case Nationality.KO.rawValue:
+        switch Nationality(rawValue: lang) {
+        case .KO:
             return "비어 있는"
-        case Nationality.EN.rawValue:
+        case .EN:
             return "empty"
-        case Nationality.FR.rawValue:
+        case .FR:
             return "vide"
-        case Nationality.JA.rawValue:
+        case .JA:
             return "空っぽの"
         default:
             return ""
@@ -62,6 +49,7 @@ struct EmptyWordListView: View {
             }
         }
         .foregroundColor(.secondary)
+        .onAppear{print(lang, emptyByLang)}
     }
 }
 

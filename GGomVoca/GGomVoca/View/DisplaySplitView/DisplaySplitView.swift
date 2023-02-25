@@ -141,7 +141,7 @@ struct DisplaySplitView: View {
             InformationView()
         }
         .sheet(isPresented: $isShowingAddVocabulary) {
-            AddVocabularyView(addCompletion:{  name , nationality in
+            AddVocabularyView(addCompletion:{ name, nationality in
                 viewModel.addVocabulary(name: name, nationality: nationality)})
                 .presentationDetents([.height(CGFloat(270))])
         }

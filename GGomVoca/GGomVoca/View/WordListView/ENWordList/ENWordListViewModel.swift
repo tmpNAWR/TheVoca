@@ -21,7 +21,7 @@ class ENENWordListViewModel: ObservableObject {
   
   // MARK: Vocabulary Properties
   var selectedVocabulary: Vocabulary = Vocabulary()
-  var nationality: String = "EN"
+    var nationality: String = Nationality.EN.rawValue
   @Published var words: [Word] = []
   
     // MARK: 일치하는 id의 단어장 불러오기 Updated

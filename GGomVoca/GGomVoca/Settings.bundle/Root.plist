@@ -16,11 +16,11 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>DefaultValue</key>
-			<string>0.0.1</string>
+			<string>1.0.2</string>
 			<key>Title</key>
-			<string>버전</string>
+			<string>Version</string>
 			<key>Key</key>
-			<string>APP_VERSION</string>
+			<string>Version_preference</string>
 		</dict>
 	</array>
 </dict>
