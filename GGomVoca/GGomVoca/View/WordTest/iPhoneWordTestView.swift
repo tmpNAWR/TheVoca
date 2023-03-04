@@ -33,9 +33,9 @@ struct iPhoneWordTestView: View {
     var textFieldPlaceHolder: String {
         switch testType {
         case "word":
-            return "단어를 입력해주세요"
+			return "단어를 입력해주세요".localized
         case "meaning":
-            return "뜻을 입력해주세요"
+			return "뜻을 입력해주세요".localized
         default:
             return ""
         }
