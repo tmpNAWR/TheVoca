@@ -31,8 +31,7 @@ struct TestScopeSelectView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Text("단어 시험 보기")
                                 HStack {
-                                    Text("총 \(viewModel.fullScopeQuestionCount)문제,")
-                                    Text(viewModel.fullScopeTestTimeStringToiPhone)
+                                    Text("총 \(viewModel.fullScopeQuestionCount)문제, 약 \(viewModel.fullScopeTestTimeStringToiPhone)분 소요")
                                 }
                                 .foregroundColor(.gray)
                             }
@@ -48,8 +47,7 @@ struct TestScopeSelectView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Text("뜻 시험 보기")
                                 HStack {
-                                    Text("총 \(viewModel.fullScopeQuestionCount)문제,")
-                                    Text(viewModel.fullScopeTestTimeStringToiPhone)
+									Text("총 \(viewModel.fullScopeQuestionCount)문제, 약 \(viewModel.fullScopeTestTimeStringToiPhone)분 소요")
                                 }
                                 .foregroundColor(.gray)
                             }
@@ -72,8 +70,7 @@ struct TestScopeSelectView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Text("단어 시험 보기")
                                 HStack {
-                                    Text("총 \(viewModel.notMemorizedQuestionCount)문제,")
-                                    Text(viewModel.notMemorizedTestTimeStringToiPhone)
+                                    Text("총 \(viewModel.notMemorizedQuestionCount)문제, 약 \(viewModel.notMemorizedTestTimeStringToiPhone)분 소요")
                                 }
                                 .foregroundColor(.gray)
                             }
@@ -90,8 +87,7 @@ struct TestScopeSelectView: View {
                             VStack(alignment: .leading, spacing: 7) {
                                 Text("뜻 시험 보기")
                                 HStack {
-                                    Text("총 \(viewModel.notMemorizedQuestionCount)문제,")
-                                    Text(viewModel.notMemorizedTestTimeStringToiPhone)
+									Text("총 \(viewModel.notMemorizedQuestionCount)문제, 약 \(viewModel.notMemorizedTestTimeStringToiPhone)분 소요")
                                 }
                                 .foregroundColor(.gray)
                             }
