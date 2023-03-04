@@ -37,22 +37,22 @@ final class TestScopeSelectViewModel: ObservableObject {
     
     /// - 시험 시간(String)
     var fullScopeTestTimeStringToiPhone   : String {
-        convertSecondsToTime(seconds: fullScopeTestTimeSecondsToiPhone)
+        convertSecondsToTime(seconds: fullScopeTestTimeSecondsToiPhone).localized
     }
     var fullScopeTestTimeStringToiPad     : String {
-        convertSecondsToTime(seconds: fullScopeTestTimeSecondsToiPad)
+        convertSecondsToTime(seconds: fullScopeTestTimeSecondsToiPad).localized
     }
     var notMemorizedTestTimeStringToiPhone: String {
-        convertSecondsToTime(seconds: notMemorizedTestTimeSecondsToiPhone)
+        convertSecondsToTime(seconds: notMemorizedTestTimeSecondsToiPhone).localized
     }
     var notMemorizedTestTimeStringToiPad  : String {
-        convertSecondsToTime(seconds: notMemorizedTestTimeSecondsToiPad)
+        convertSecondsToTime(seconds: notMemorizedTestTimeSecondsToiPad).localized
     }
     
     // MARK: 시간(초)를 hh:mm:ss로 바꿔주는 메서드
     private func convertSecondsToTime(seconds: Int) -> String {
         let minutes = seconds / 60
-        return "약 \(minutes)분 소요"
+		return "\(minutes)"
     }
     
     // MARK: Vocabulary ID를 매개변수로 해당하는 단어장의 words를 가져오는 메서드
