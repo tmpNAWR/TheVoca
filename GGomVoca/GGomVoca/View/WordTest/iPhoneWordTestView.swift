@@ -78,6 +78,16 @@ struct iPhoneWordTestView: View {
                     .multilineTextAlignment(.center)
             }
             
+            Button {
+                vm.nextActions(answer: "")
+                answer.removeAll()
+                focusedField = .answer
+            } label: {
+                Text("pass")
+            }
+            .horizontalAlignSetting(.leading)
+            .padding(.leading, 10)
+            
             TextField("\(textFieldPlaceHolder)", text: $answer)
                 .multilineTextAlignment(.center)
                 .textFieldStyle(.roundedBorder)
@@ -107,18 +117,6 @@ struct iPhoneWordTestView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(isPresented: $vm.isFinished) {
             WordTestResultView(isTestMode: $isTestMode, vm: vm, testType: testType)
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    vm.nextActions(answer: "")
-                    answer.removeAll()
-                    focusedField = .answer
-                } label: {
-                    Text("pass")
-                }
-                
-            }
         }
     }
     
