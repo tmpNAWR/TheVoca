@@ -94,7 +94,11 @@ struct iPhoneWordTestView: View {
             
             TextField("\(textFieldPlaceHolder)", text: $answer)
                 .multilineTextAlignment(.center)
-                .textFieldStyle(.roundedBorder)
+                .frame(height: 45)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.gray, lineWidth: 0.2)
+                }
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
                 .focused($focusedField, equals: .answer)
