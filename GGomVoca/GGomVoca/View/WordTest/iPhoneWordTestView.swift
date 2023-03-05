@@ -13,6 +13,7 @@ enum Field: Hashable {
 
 struct iPhoneWordTestView: View {
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) var dismiss
     
     // 시험지 fullscreen 닫기 위한 Property
     @Binding var isTestMode: Bool
@@ -20,6 +21,9 @@ struct iPhoneWordTestView: View {
     // MARK: Data Properties
     var vocabularyID: Vocabulary.ID
     @StateObject var vm: WordTestViewModel = WordTestViewModel()
+    
+    // MARK: alert에 관한 Property
+    @State var isShowingAlert: Bool = false
     
     // MARK: Test Mode에 관한 Properties
     let testType: String
@@ -113,10 +117,30 @@ struct iPhoneWordTestView: View {
             vm.startTimer()
             focusedField = .answer
         }
+        .alert("뒤로 가시겠습니까?", isPresented: $isShowingAlert) {
+            Button("확인") {
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("시험 범위 선택 화면으로 돌아갑니다.")
+        }
         .navigationTitle("\(vm.currentQuestionNum + 1) / \(vm.testPaper.count)")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $vm.isFinished) {
             WordTestResultView(isTestMode: $isTestMode, vm: vm, testType: testType)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    isShowingAlert.toggle()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .fontWeight(.semibold)
+                }
+
+            }
         }
     }
     
