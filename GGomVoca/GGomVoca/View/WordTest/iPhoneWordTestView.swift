@@ -13,7 +13,7 @@ enum Field: Hashable {
 
 struct iPhoneWordTestView: View {
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     
     // 시험지 fullscreen 닫기 위한 Property
     @Binding var isTestMode: Bool
@@ -140,6 +140,16 @@ struct iPhoneWordTestView: View {
                         .fontWeight(.semibold)
                 }
 
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    vm.nextActions(answer: answer)
+                    answer.removeAll()
+                    focusedField = .answer
+                } label: {
+                    Text("제출")
+                }
+                .disabled(answer.isEmpty)
             }
         }
     }
