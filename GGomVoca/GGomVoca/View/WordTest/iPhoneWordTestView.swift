@@ -123,13 +123,13 @@ struct iPhoneWordTestView: View {
             vm.startTimer()
             focusedField = .answer
         }
-        .alert("뒤로 가시겠습니까?", isPresented: $isShowingAlert) {
+        .alert("시험을 포기하시겠습니까?", isPresented: $isShowingAlert) {
             Button("확인") {
                 dismiss()
             }
             Button("취소", role: .cancel) {}
         } message: {
-            Text("시험 범위 선택 화면으로 돌아갑니다.")
+            Text("지금까지 제출한 답안은 사라집니다.")
         }
         .navigationTitle("\(vm.currentQuestionNum + 1) / \(vm.testPaper.count)")
         .navigationBarTitleDisplayMode(.inline)
