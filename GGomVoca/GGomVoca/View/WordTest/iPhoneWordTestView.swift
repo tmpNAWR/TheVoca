@@ -108,11 +108,11 @@ struct iPhoneWordTestView: View {
                 .disabled(timeOver||isExistLastAnswer)
                 .overlay {
                     if vm.isLastQuestion {
-                        Text("\(Image(systemName: "exclamationmark.circle")) 마지막 문제입니다.\n완료 버튼을 누르면 시험지가 자동 제출됩니다.")
+                        Text("\(Image(systemName: "exclamationmark.circle")) 마지막 문제입니다.")
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
-                            .offset(y: -50)
+                            .offset(y: -43)
                     }
                 }
         }
