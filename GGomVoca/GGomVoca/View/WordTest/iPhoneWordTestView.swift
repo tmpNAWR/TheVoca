@@ -13,6 +13,7 @@ enum Field: Hashable {
 
 struct iPhoneWordTestView: View {
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) private var dismiss
     
     // 시험지 fullscreen 닫기 위한 Property
     @Binding var isTestMode: Bool
@@ -20,6 +21,9 @@ struct iPhoneWordTestView: View {
     // MARK: Data Properties
     var vocabularyID: Vocabulary.ID
     @StateObject var vm: WordTestViewModel = WordTestViewModel()
+    
+    // MARK: alert에 관한 Property
+    @State var isShowingAlert: Bool = false
     
     // MARK: Test Mode에 관한 Properties
     let testType: String
@@ -33,9 +37,9 @@ struct iPhoneWordTestView: View {
     var textFieldPlaceHolder: String {
         switch testType {
         case "word":
-            return "단어를 입력해주세요"
+			return "단어를 입력해주세요".localized
         case "meaning":
-            return "뜻을 입력해주세요"
+			return "뜻을 입력해주세요".localized
         default:
             return ""
         }
@@ -71,16 +75,23 @@ struct iPhoneWordTestView: View {
             
             Spacer()
             
-            if vm.isLastQuestion {
-                Text("\(Image(systemName: "exclamationmark.circle")) 마지막 문제입니다.\n완료 버튼을 누르면 시험지가 자동 제출됩니다.")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
+            Button {
+                vm.nextActions(answer: "")
+                answer.removeAll()
+                focusedField = .answer
+            } label: {
+                Text("pass")
             }
+            .horizontalAlignSetting(.leading)
+            .padding(.leading, 10)
             
             TextField("\(textFieldPlaceHolder)", text: $answer)
                 .multilineTextAlignment(.center)
-                .textFieldStyle(.roundedBorder)
+                .frame(height: 45)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.gray, lineWidth: 0.2)
+                }
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
                 .focused($focusedField, equals: .answer)
@@ -95,6 +106,15 @@ struct iPhoneWordTestView: View {
                     }
                 }
                 .disabled(timeOver||isExistLastAnswer)
+                .overlay {
+                    if vm.isLastQuestion {
+                        Text("\(Image(systemName: "exclamationmark.circle")) 마지막 문제입니다.")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .offset(y: -43)
+                    }
+                }
         }
         .onAppear {
             vm.testType = testType
@@ -103,21 +123,39 @@ struct iPhoneWordTestView: View {
             vm.startTimer()
             focusedField = .answer
         }
+        .alert("시험을 포기하시겠습니까?", isPresented: $isShowingAlert) {
+            Button("확인") {
+                dismiss()
+            }
+            Button("취소", role: .cancel) {}
+        } message: {
+            Text("지금까지 제출한 답안은 사라집니다.")
+        }
         .navigationTitle("\(vm.currentQuestionNum + 1) / \(vm.testPaper.count)")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $vm.isFinished) {
             WordTestResultView(isTestMode: $isTestMode, vm: vm, testType: testType)
         }
         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    isShowingAlert.toggle()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .fontWeight(.semibold)
+                }
+
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    vm.nextActions(answer: "")
+                    vm.nextActions(answer: answer)
                     answer.removeAll()
                     focusedField = .answer
                 } label: {
-                    Text("pass")
+                    Text("제출")
                 }
-                
+                .disabled(answer.isEmpty)
             }
         }
     }
