@@ -1060,7 +1060,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				minimumVersion = 10.24.0;
 			};
 		};
 		EEDCBFDB298B800A00A7B016 /* XCRemoteSwiftPackageReference "Swinject" */ = {
@@ -1068,7 +1068,7 @@
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.3;
+				minimumVersion = 2.8.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
