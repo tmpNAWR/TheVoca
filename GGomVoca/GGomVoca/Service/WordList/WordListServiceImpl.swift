@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 final class WordListServiceImpl: WordListService {
-    //Repository
+    // Repository
     private let coreDataRepo: CoreDataRepository
     private let cloudDataRepo: CloudKitRepository
     
