@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,22 +13,17 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="lVl-nH-5n4">
-                                <rect key="frame" x="470" y="290" width="240" height="240"/>
+                                <rect key="frame" x="107.66666666666669" y="358.66666666666669" width="215" height="215.00000000000006"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="Fm4-iX-x58"/>
-                                    <constraint firstAttribute="width" constant="240" id="MsC-mW-BFv"/>
+                                    <constraint firstAttribute="width" secondItem="lVl-nH-5n4" secondAttribute="height" multiplier="1:1" id="4Ky-YY-OJ6"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TheVoca" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rh4-PD-zl5">
-                                <rect key="frame" x="501.5" y="515" width="177" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="6cQ-wy-Prm"/>
-                                    <constraint firstAttribute="width" constant="177" id="8VO-iu-X84"/>
-                                </constraints>
+                                <rect key="frame" x="146.33333333333331" y="807" width="137.33333333333331" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,10 +32,11 @@
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Rh4-PD-zl5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MGh-a2-eur"/>
-                            <constraint firstItem="lVl-nH-5n4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="eIv-oo-msL"/>
-                            <constraint firstItem="lVl-nH-5n4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qNy-C3-rr7"/>
-                            <constraint firstItem="Rh4-PD-zl5" firstAttribute="top" secondItem="lVl-nH-5n4" secondAttribute="bottom" constant="-15" id="qOU-tu-Mrc"/>
+                            <constraint firstItem="lVl-nH-5n4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="A0Y-hw-gbi"/>
+                            <constraint firstItem="lVl-nH-5n4" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="Doi-bE-aMF"/>
+                            <constraint firstItem="Rh4-PD-zl5" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FGD-Je-oMM"/>
+                            <constraint firstItem="lVl-nH-5n4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Kyk-zI-LYl"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="Rh4-PD-zl5" secondAttribute="bottom" constant="50" id="oio-BO-h9y"/>
                         </constraints>
                     </view>
                 </viewController>
