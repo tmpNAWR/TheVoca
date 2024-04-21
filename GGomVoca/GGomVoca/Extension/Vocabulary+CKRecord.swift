@@ -6,15 +6,14 @@
 //
 
 import Foundation
-
 import CoreData
 import CloudKit
 
 //CoreData Vocabulary Type <-> CloudKit Vocabulary Type
 extension Vocabulary {
-    
     // Define the record types in CloudKit
     static let recordType = "Vocabulary"
+    
     // CKRecord object -> Vocabulary object 변환
     static func from(ckRecord: CKRecord) -> Vocabulary? {
         guard let idString = ckRecord["id"] as? String,
@@ -25,12 +24,10 @@ extension Vocabulary {
               let createdAt = ckRecord["createdAt"] as? String,
               let nationality = ckRecord["nationality"] as? String,
               let updatedAt = ckRecord["updatedAt"] as? String
-                
         else {
-            print("from result : \(ckRecord) = fail")
             return nil
         }
-        print("from result : \(ckRecord) = success")
+        
         let vocabulary = Vocabulary(context: PersistenceController.shared.container.viewContext)
         vocabulary.id = id
         vocabulary.isPinned = isPinned
@@ -39,9 +36,9 @@ extension Vocabulary {
         //vocabulary.deleatedAt = deleatedAt
         vocabulary.nationality = nationality
         vocabulary.updatedAt = updatedAt
+        
         return vocabulary
     }
-    
     
     // Define a word record
     var ckRecord: CKRecord {
@@ -53,6 +50,7 @@ extension Vocabulary {
         record["deleatedAt"] = deleatedAt
         record["nationality"] = nationality
         record["updatedAt"] = updatedAt
+        
         return record
     }
 }
