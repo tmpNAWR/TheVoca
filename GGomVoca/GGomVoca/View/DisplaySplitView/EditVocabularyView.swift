@@ -45,19 +45,6 @@ struct EditVocabularyView: View {
             .onAppear {
                 inputVocabularyName = vocabulary.name ?? ""
                 nationality = Nationality(rawValue: vocabulary.nationality ?? "") ?? .KO
-//                switch vocabulary.nationality ?? "" {
-//                case "KO" :
-//                    nationality = .KO
-//                case "EN":
-//                    nationality = .EN
-//                case "JA":
-//                    nationality = .JA
-//                case "FR":
-//                    nationality = .FR
-//                default:
-//                    break
-//                }
-                print(nationality)
             }
             .toolbar {
                 /// - 취소 버튼
@@ -86,7 +73,6 @@ struct EditVocabularyView: View {
     // MARK: SaveContext
     private func saveContext() {
         do {
-            print("saveContext")
             try viewContext.save()
         } catch {
             print("Error saving managed object context: \(error)")
