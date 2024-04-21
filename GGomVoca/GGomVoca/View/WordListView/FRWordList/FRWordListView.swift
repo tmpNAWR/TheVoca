@@ -15,7 +15,7 @@ struct FRWordListView: View {
         self.vocabularyID = vocabularyID
     }
     
-    @StateObject private var viewModel: FRFRWordListViewModel = DependencyManager.shared.resolve(FRFRWordListViewModel.self)!
+    @StateObject private var viewModel: FRWordListViewModel = DependencyManager.shared.resolve(FRWordListViewModel.self)!
     @StateObject private var speechSynthesizer = SpeechSynthesizer()
     
     // MARK: View Properties

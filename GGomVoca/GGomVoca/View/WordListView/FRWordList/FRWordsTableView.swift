@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FRWordsTableView: View {
     // MARK: SuperView Properties
-    @ObservedObject var viewModel: FRFRWordListViewModel
+    @ObservedObject var viewModel: FRWordListViewModel
     @ObservedObject var speechSynthesizer: SpeechSynthesizer
     
     var selectedSegment: ProfileSection

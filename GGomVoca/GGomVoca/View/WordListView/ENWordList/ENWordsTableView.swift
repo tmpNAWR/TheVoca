@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ENWordsTableView: View {
     // MARK: SuperView Properties
-    @ObservedObject var viewModel: ENENWordListViewModel
+    @ObservedObject var viewModel: ENWordListViewModel
     @ObservedObject var speechSynthesizer: SpeechSynthesizer
     
     var selectedSegment: ProfileSection

@@ -48,9 +48,9 @@ extension DependencyManager {
             return WordListViewModel(service: service)
         }
         
-        container.register(ENENWordListViewModel.self) { resolver in
+        container.register(ENWordListViewModel.self) { resolver in
             let service = resolver.resolve(WordListService.self)!
-            return ENENWordListViewModel(service: service)
+            return ENWordListViewModel(service: service)
         }
         
         container.register(KOWordListViewModel.self) { resolver in
@@ -58,9 +58,9 @@ extension DependencyManager {
             return KOWordListViewModel(service: service)
         }
         
-        container.register(ENENWordListViewModel.self) { resolver in
+        container.register(ENWordListViewModel.self) { resolver in
             let service = resolver.resolve(WordListService.self)!
-            return ENENWordListViewModel(service: service)
+            return ENWordListViewModel(service: service)
         }
         
         container.register(JPWordListViewModel.self) { resolver in
@@ -68,9 +68,9 @@ extension DependencyManager {
             return JPWordListViewModel(service: service)
         }
         
-        container.register(FRFRWordListViewModel.self) { resolver in
+        container.register(FRWordListViewModel.self) { resolver in
             let service = resolver.resolve(WordListService.self)!
-            return FRFRWordListViewModel(service: service)
+            return FRWordListViewModel(service: service)
         }
     }
     

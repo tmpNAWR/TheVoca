@@ -15,7 +15,7 @@ struct ENWordListView: View {
         self.vocabularyID = vocabularyID
     }
     
-    @StateObject private var viewModel: ENENWordListViewModel = DependencyManager.shared.resolve(ENENWordListViewModel.self)!
+    @StateObject private var viewModel: ENWordListViewModel = DependencyManager.shared.resolve(ENWordListViewModel.self)!
     @StateObject private var speechSynthesizer = SpeechSynthesizer()
     
     // MARK: View Properties

@@ -15,7 +15,7 @@ import SwiftUI
 
 struct ENAddNewWordView: View {
     // MARK: Super View Properties
-    var viewModel : ENENWordListViewModel
+    var viewModel : ENWordListViewModel
     
     // MARK: View Properties
     @Environment(\.dismiss) private var dismiss

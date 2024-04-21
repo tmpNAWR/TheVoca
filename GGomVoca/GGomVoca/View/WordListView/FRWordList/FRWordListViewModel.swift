@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class FRFRWordListViewModel: ObservableObject {
+final class FRWordListViewModel: ObservableObject {
     //MARK: Service
     private let service: WordListService
     private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
