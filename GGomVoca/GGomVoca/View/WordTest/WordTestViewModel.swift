@@ -105,9 +105,9 @@ final class WordTestViewModel: ObservableObject {
             switch testType {
             case "word":
                 if testPaper[idx].word == testPaper[idx].answer {
-                    testPaper[idx].isCorrect = .Right
+                    testPaper[idx].isCorrect = .right
                 } else {
-                    testPaper[idx].isCorrect = .Wrong
+                    testPaper[idx].isCorrect = .wrong
                 }
             case "meaning":
                 // MARK: white space trim
@@ -115,12 +115,12 @@ final class WordTestViewModel: ObservableObject {
                 for i in trimmedAnswer!.indices {
                     trimmedAnswer![i] = trimmedAnswer![i].trimmingCharacters(in: .whitespaces)
                 }
-                if testPaper[idx].meaning.containsSameElements(as: trimmedAnswer!) == .Right {
-                    testPaper[idx].isCorrect = .Right
-                } else if testPaper[idx].meaning.containsSameElements(as: trimmedAnswer!) == .Wrong {
-                    testPaper[idx].isCorrect = .Wrong
+                if testPaper[idx].meaning.containsSameElements(as: trimmedAnswer!) == .right {
+                    testPaper[idx].isCorrect = .right
+                } else if testPaper[idx].meaning.containsSameElements(as: trimmedAnswer!) == .wrong {
+                    testPaper[idx].isCorrect = .wrong
                 } else {
-                    testPaper[idx].isCorrect = .Half
+                    testPaper[idx].isCorrect = .half
                 }
             default:
                 print("default")
@@ -143,7 +143,7 @@ final class WordTestViewModel: ObservableObject {
             
             // 시험 본 단어 update
             if let tempWord = testPaper.filter({ $0.word == word.word }).first {
-                if tempWord.isCorrect == .Right {
+                if tempWord.isCorrect == .right {
                     word.recentTestResults?.append("O")
                     word.correctCount += 1
                     

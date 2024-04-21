@@ -7,33 +7,29 @@
 
 import SwiftUI
 
-struct SwipeContainerCell: ViewModifier  {
+struct SwipeContainerCell: ViewModifier {
     enum VisibleButton {
         case none
         case left
         case right
     }
+    
     @State private var offset: CGFloat = 0
     @State private var oldOffset: CGFloat = 0
     @State private var visibleButton: VisibleButton = .none
-    let leadingButtons: [CellButtons]
-    let trailingButton: [CellButtons]
-    let maxLeadingOffset: CGFloat
-    let minTrailingOffset: CGFloat
-    let onClick: (CellButtons) -> Void
+    
+    private let leadingButtons: [CellButtons]
+    private let trailingButton: [CellButtons]
+    private let maxLeadingOffset: CGFloat
+    private let minTrailingOffset: CGFloat
+    private let onClick: (CellButtons) -> Void
     
     init(leadingButtons: [CellButtons], trailingButton: [CellButtons], onClick: @escaping (CellButtons) -> Void) {
         self.leadingButtons = leadingButtons
         self.trailingButton = trailingButton
-        maxLeadingOffset = CGFloat(leadingButtons.count) * 60
-        minTrailingOffset = CGFloat(trailingButton.count) * 60 * -1
+        self.maxLeadingOffset = CGFloat(leadingButtons.count) * 60
+        self.minTrailingOffset = CGFloat(trailingButton.count) * 60 * -1
         self.onClick = onClick
-    }
-    
-    func reset() {
-        visibleButton = .none
-        offset = 0
-        oldOffset = 0
     }
     
     func body(content: Content) -> some View {
@@ -106,5 +102,13 @@ struct SwipeContainerCell: ViewModifier  {
                 }
             }
         }
+    }
+}
+
+extension SwipeContainerCell {
+    private func reset() {
+        visibleButton = .none
+        offset = 0
+        oldOffset = 0
     }
 }

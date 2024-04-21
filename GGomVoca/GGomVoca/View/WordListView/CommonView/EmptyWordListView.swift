@@ -49,7 +49,6 @@ struct EmptyWordListView: View {
             }
         }
         .foregroundColor(.secondary)
-        .onAppear{print(lang, emptyByLang)}
     }
 }
 

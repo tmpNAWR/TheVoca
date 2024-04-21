@@ -6,10 +6,13 @@
 //
 
 import Foundation
-enum RepositoryError: Error, ErrorProtocol {
-    case cloudRepositoryError(error: CloudError)
-    case coreDataRepositoryError(error: CoreDataError)
 
+enum RepositoryError: Error {
+    case cloudRepositoryError(error: CloudError)
+    case coreDataRepositoryError(error: CoreDataError)    
+}
+
+extension RepositoryError: ErrorProtocol {
     var errorDescription: String? {
         switch self {
         case .cloudRepositoryError(let error):

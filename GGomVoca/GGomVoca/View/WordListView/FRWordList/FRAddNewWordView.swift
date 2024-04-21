@@ -15,7 +15,7 @@ import SwiftUI
 
 struct FRAddNewWordView: View {
     // MARK: Super View Properties
-    var viewModel : FRFRWordListViewModel
+    var viewModel : FRWordListViewModel
     
     // MARK: View Properties
     @Environment(\.dismiss) private var dismiss

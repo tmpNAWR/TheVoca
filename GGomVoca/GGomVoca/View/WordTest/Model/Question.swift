@@ -12,6 +12,6 @@ struct Question: Identifiable {
     var word: String
     var meaning: [String]
     var answer: String?
-    var isCorrect: Result = .Wrong
+    var isCorrect: Result = .wrong
     var isToggleMemorize: Bool = false
 }

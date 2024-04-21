@@ -10,7 +10,7 @@ import SwiftUI
 //단어 수정 뷰
 struct ENEditWordView: View {
     // MARK: Data Properties
-    var viewModel: ENENWordListViewModel
+    var viewModel: ENWordListViewModel
     
     // MARK: Super View Properties
     @Binding var editWord: Bool
