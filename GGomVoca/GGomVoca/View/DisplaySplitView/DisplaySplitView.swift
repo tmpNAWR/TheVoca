@@ -12,11 +12,11 @@ struct DisplaySplitView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     // MARK: UbiquitousStorage Property
-    @UbiquitousStorage(key: "pinnedVocabularyIDs",   defaultValue: []) var pinnedVocabularyIDs  : [String]
-    @UbiquitousStorage(key: "koreanVocabularyIDs",   defaultValue: []) var koreanVocabularyIDs  : [String]
-    @UbiquitousStorage(key: "englishVocabularyIDs",  defaultValue: []) var englishVocabularyIDs : [String]
-    @UbiquitousStorage(key: "japanishVocabularyIDs", defaultValue: []) var japanishVocabularyIDs: [String]
-    @UbiquitousStorage(key: "frenchVocabularyIDs",   defaultValue: []) var frenchVocabularyIDs  : [String]
+    @UbiquitousStorage(key: .pinnedVocabularyIDs,   defaultValue: []) var pinnedVocabularyIDs  : [String]
+    @UbiquitousStorage(key: .koreanVocabularyIDs,   defaultValue: []) var koreanVocabularyIDs  : [String]
+    @UbiquitousStorage(key: .englishVocabularyIDs,  defaultValue: []) var englishVocabularyIDs : [String]
+    @UbiquitousStorage(key: .japanishVocabularyIDs, defaultValue: []) var japanishVocabularyIDs: [String]
+    @UbiquitousStorage(key: .frenchVocabularyIDs,   defaultValue: []) var frenchVocabularyIDs  : [String]
     
     // MARK: View Properties
     @StateObject var viewModel : DisplaySplitViewModel

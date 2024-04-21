@@ -13,8 +13,8 @@ struct UbiquitousStorage<T> {
     private let key: String
     private let defaultValue: T
     
-    init(key: String, defaultValue: T) {
-        self.key = key
+    init(key: UbiquitousStorageItem, defaultValue: T) {
+        self.key = key.rawValue
         self.defaultValue = defaultValue
     }
     
@@ -28,13 +28,3 @@ struct UbiquitousStorage<T> {
         }
     }
 }
-
-// MARK: NSUbiquitousKeyValueStore 객체를 생성하지 않고 바로 점표기법으로 접근하기 위한 extension
-/// - 하지만, 우리 앱에서는 이것들을 만질 메서드도 잔뜩 필요하기 때문에 일단 사용하지 않고 UserManager에서 관리하기로 함!
-//extension NSUbiquitousKeyValueStore {
-//    @UbiquitousStorage(key: "pinnedVocabularyIDs",   defaultValue: []) static var pinnedVocabularyIDs  : [String]
-//    @UbiquitousStorage(key: "koreanVocabularyIDs",   defaultValue: []) static var koreanVocabularyIDs  : [String]
-//    @UbiquitousStorage(key: "englishVocabularyIDs",  defaultValue: []) static var englishVocabularyIDs : [String]
-//    @UbiquitousStorage(key: "japanishVocabularyIDs", defaultValue: []) static var japanishVocabularyIDs: [String]
-//    @UbiquitousStorage(key: "frenchVocabularyIDs",   defaultValue: []) static var frenchVocabularyIDs  : [String]
-//}
