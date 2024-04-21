@@ -25,7 +25,6 @@ protocol TTSProtocol {
 }
 
 final class SpeechSynthesizer: NSObject, ObservableObject, TTSProtocol {
-    // 싱글톤으로 정의
     private var instance: AVSpeechSynthesizer? = AVSpeechSynthesizer()
     
     // 단어와 의미 사이의 간격 (같은 단어 내에서)
@@ -59,19 +58,21 @@ final class SpeechSynthesizer: NSObject, ObservableObject, TTSProtocol {
             instance?.delegate = self
         }
         
+        guard let instance else { return }
+        
         let wordUtterance = AVSpeechUtterance(string: word.word ?? "") // TTS로 들려줄 단어 설정
         wordUtterance.voice = AVSpeechSynthesisVoice(language: language) // 언어 설정
         wordUtterance.postUtteranceDelay = intervalOfWordAndMeaning // 다음 단어와의 시간 간격 설정
-        instance?.speak(wordUtterance) // TTS 작동
+        instance.speak(wordUtterance) // TTS 작동
         
-        if type == SpeechType.single { return } // contextMenu로 접근한 경우
+        guard type != SpeechType.single else { return } // contextMenu로 접근한 경우
         
         // meaning 타입이 [String?]라서 순회하는 방식으로 구현
         word.meaning?.forEach { meaning in
             let meaningUtterance = AVSpeechUtterance(string: meaning)
             meaningUtterance.voice = AVSpeechSynthesisVoice(language: meaningUtteranceLanguage)
             meaningUtterance.postUtteranceDelay = intervalOfMeaningAndMeaning
-            instance?.speak(meaningUtterance)
+            instance.speak(meaningUtterance)
         }
     }
     
@@ -84,7 +85,7 @@ final class SpeechSynthesizer: NSObject, ObservableObject, TTSProtocol {
         isPlaying = true // 재생 상태로 변경
         
         words.forEach { word in
-            self.speakWordAndMeaning(word, to: language, .many)
+            speakWordAndMeaning(word, to: language, .many)
         }
     }
     
@@ -95,17 +96,18 @@ final class SpeechSynthesizer: NSObject, ObservableObject, TTSProtocol {
         instance = nil // 인스턴스 초기화
         isPlaying = false // 정지 상태로 변경
     }
-    
+}
+
+extension SpeechSynthesizer {
     /// 재생할 단어의 개수를 계산하는 메서드
     private func calculateWordsAndMeanings(_ words: [Word]) -> Int {
         var cnt = 0
 
         for word in words {
             cnt += 1
-
-            for _ in word.meaning ?? [] {
-                cnt += 1
-            }
+            
+            guard let meaningCount = word.meaning?.count else { continue }
+            cnt += meaningCount
         }
 
         return cnt
@@ -115,10 +117,11 @@ final class SpeechSynthesizer: NSObject, ObservableObject, TTSProtocol {
 extension SpeechSynthesizer: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         // 재생이 완료된 단어의 개수가 총 단어의 개수와 일치하면 정지
-        if totalWordsCount == spokenWordsCount {
-            isPlaying = false
-        } else {
+        guard totalWordsCount == spokenWordsCount else {
             spokenWordsCount += 1
+            return
         }
+        
+        isPlaying = false
     }
 }
