@@ -23,12 +23,6 @@ final class UserManager {
     
     func sync() {
         NSUbiquitousKeyValueStore().synchronize()
-        
-        print("고정", pinnedVocabularyIDs)
-        print("한국", koreanVocabularyIDs)
-        print("영어", englishVocabularyIDs)
-        print("일본", japanishVocabularyIDs)
-        print("프랑스", frenchVocabularyIDs)
     }
     
     /// 단어장 추가

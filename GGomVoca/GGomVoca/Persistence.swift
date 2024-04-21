@@ -82,9 +82,4 @@ struct PersistenceController {
         let context = container.viewContext
         context.refreshAllObjects()
     }
-
-    //    func refrechContext() {
-    //        let context = container.viewContext
-    //        context.refreshAllObjects()
-    //    }
 }
