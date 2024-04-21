@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct DisplaySplitView: View {
-    // MARK: CoreData Property
-    @Environment(\.managedObjectContext) private var viewContext
+    @StateObject private var viewModel: DisplaySplitViewModel
     
-    // MARK: UbiquitousStorage Property
-    @UbiquitousStorage(key: .pinnedVocabularyIDs,   defaultValue: []) var pinnedVocabularyIDs  : [String]
-    @UbiquitousStorage(key: .koreanVocabularyIDs,   defaultValue: []) var koreanVocabularyIDs  : [String]
-    @UbiquitousStorage(key: .englishVocabularyIDs,  defaultValue: []) var englishVocabularyIDs : [String]
-    @UbiquitousStorage(key: .japanishVocabularyIDs, defaultValue: []) var japanishVocabularyIDs: [String]
-    @UbiquitousStorage(key: .frenchVocabularyIDs,   defaultValue: []) var frenchVocabularyIDs  : [String]
+    init(viewModel: DisplaySplitViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
+    // MARK: 단어장 ID 배열
+    @State private var pinnedVocabularyIDs = [String]()
+    @State private var koreanVocabularyIDs = [String]()
+    @State private var englishVocabularyIDs = [String]()
+    @State private var japanishVocabularyIDs = [String]()
+    @State private var frenchVocabularyIDs = [String]()
     
     // MARK: View Properties
-    @StateObject var viewModel : DisplaySplitViewModel
     @State private var splitViewVisibility: NavigationSplitViewVisibility = .all
     /// - NavigationSplitView 선택 단어장 Id
-    @State private var selectedVocabulary : Vocabulary?
+    @State private var selectedVocabulary: Vocabulary?
     /// - 개발자 뷰 show flag
     @State private var isShowingContributor: Bool = false
     /// - 정보(앱 버전, 라이선스) 뷰 show flag
@@ -33,6 +35,7 @@ struct DisplaySplitView: View {
     @State private var editMode: EditMode = .inactive
     /// - Searching
     @State private var inputKeyword: String = ""
+    
     private var keyword: String {
         inputKeyword.trimmingCharacters(in: .whitespaces).lowercased()
     }
@@ -69,9 +72,14 @@ struct DisplaySplitView: View {
         .searchable(text: $inputKeyword, placement: .navigationBarDrawer, prompt: "등록한 단어 검색")
         .onAppear {
             viewModel.getVocabularyData()
+            updateVocabularyIDs()
         }
         .refreshable {
             viewModel.getVocabularyData()
+            updateVocabularyIDs()
+        }
+        .onReceive(UserManager.shared.valueChanged) { _ in
+            updateVocabularyIDs()
         }
     }
     
@@ -123,13 +131,7 @@ struct DisplaySplitView: View {
                 Button {
                     isShowingAddVocabulary.toggle()
                 } label: {
-                    //Image(systemName: "plus.circle")
                     Image(systemName: "folder.badge.plus")
-                    //Image(systemName: "doc.badge.plus")
-                    //HStack(spacing: 3) {
-                    //Image(systemName: "plus.circle")
-                    //Text("단어장 추가")
-                    //}
                 }
                 .disabled(editMode == .active)
             }
@@ -143,7 +145,7 @@ struct DisplaySplitView: View {
         .sheet(isPresented: $isShowingAddVocabulary) {
             AddVocabularyView(addCompletion:{ name, nationality in
                 viewModel.addVocabulary(name: name, nationality: nationality)})
-                .presentationDetents([.height(CGFloat(270))])
+            .presentationDetents([.height(CGFloat(270))])
         }
     }
     
@@ -164,7 +166,7 @@ struct DisplaySplitView: View {
             }
         }
     }
-
+    
     // MARK: VocabularyList가 비어있지 않을 때 표시되는 sidebar view
     func vocabularyListView() -> some View {
         List(selection: $selectedVocabulary) {
@@ -242,7 +244,7 @@ struct DisplaySplitView: View {
                     }
                 }
             }
-
+            
             // MARK: 일본어
             if !japanishVocabularyIDs.isEmpty {
                 Section("일본어") {
@@ -300,11 +302,7 @@ struct DisplaySplitView: View {
             /// - 편집 모드
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button {
-                    if editMode == .inactive {
-                        editMode = .active
-                    } else {
-                        editMode = .inactive
-                    }
+                    editMode = editMode == .inactive ? .active : .inactive
                 } label: {
                     Text(editMode == .inactive ? "편집" : "완료")
                 }
@@ -314,7 +312,7 @@ struct DisplaySplitView: View {
             }
         }
     }
-
+    
     // MARK: selectedVocabulary가 nil이면서 vocabularyList의 상태에 따라 분기되는 Detail View 및 공통 수정자
     func notSelectedVocabularyView() -> some View {
         Group {
@@ -374,8 +372,18 @@ struct DisplaySplitView: View {
     }
 }
 
-struct VocabularyListView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisplaySplitView(viewModel: DisplaySplitViewModel(vocabularyList: [], service: VocabularyServiceImpl(coreDataRepo: CoreDataRepositoryImpl(context: PersistenceController.shared.container.viewContext), cloudDataRepo: CloudKitRepositoryImpl())))
+extension DisplaySplitView {
+    private func updateVocabularyIDs() {
+        pinnedVocabularyIDs = UserManager.shared.pinnedVocabularyIDs
+        koreanVocabularyIDs = UserManager.shared.koreanVocabularyIDs
+        englishVocabularyIDs = UserManager.shared.englishVocabularyIDs
+        japanishVocabularyIDs = UserManager.shared.japanishVocabularyIDs
+        frenchVocabularyIDs = UserManager.shared.frenchVocabularyIDs
     }
 }
+
+//struct VocabularyListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DisplaySplitView(viewModel: DisplaySplitViewModel(vocabularyList: [], service: VocabularyServiceImpl(coreDataRepo: CoreDataRepositoryImpl(context: PersistenceController.shared.container.viewContext), cloudDataRepo: CloudKitRepositoryImpl())))
+//    }
+//}

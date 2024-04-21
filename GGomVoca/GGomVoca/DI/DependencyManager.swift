@@ -33,7 +33,8 @@ extension DependencyManager {
     private func registerViews() {
         container.register(DisplaySplitView.self) { resolver in
             let viewModel = resolver.resolve(DisplaySplitViewModel.self)
-            return DisplaySplitView(viewModel: viewModel!) }
+            return DisplaySplitView(viewModel: viewModel!)
+        }
     }
     
     // MARK: ViewModel

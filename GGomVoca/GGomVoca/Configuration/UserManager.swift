@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 
 final class UserManager {
     static let shared = UserManager()
     
     private init() {}
+    
+    let valueChanged = NotificationCenter.default.publisher(for: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: NSUbiquitousKeyValueStore.default).receive(on: RunLoop.main)
     
     @UbiquitousStorage(key: .pinnedVocabularyIDs,   defaultValue: []) var pinnedVocabularyIDs  : [String]
     @UbiquitousStorage(key: .koreanVocabularyIDs,   defaultValue: []) var koreanVocabularyIDs  : [String]
