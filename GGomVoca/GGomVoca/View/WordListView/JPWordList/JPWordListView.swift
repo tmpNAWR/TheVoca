@@ -16,7 +16,7 @@ struct JPWordListView: View {
     }
     
     @StateObject private var viewModel: JPWordListViewModel = DependencyManager.shared.resolve(JPWordListViewModel.self)!
-    @ObservedObject private var speechSynthesizer = SpeechSynthesizer()
+    @StateObject private var speechSynthesizer = SpeechSynthesizer()
     
     // MARK: View Properties
     /// - onAppear 될 때 viewModel에서 값 할당
