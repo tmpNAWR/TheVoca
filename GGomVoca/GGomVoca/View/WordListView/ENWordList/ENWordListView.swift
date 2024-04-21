@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct ENWordListView: View {
     // MARK: Data Properties
@@ -167,7 +166,7 @@ struct ENWordListView: View {
                         Button("선택한 단어 듣기") {
                             speechSynthesizer.speakWordsAndMeanings(selectedWords, to: "en-US")
                         }
-                        .disabled(multiSelection.isEmpty ? true : false)
+                        .disabled(multiSelection.isEmpty)
                         
                         Button(role: .destructive) {
                             if UIDevice.current.model == "iPhone" {
@@ -178,7 +177,7 @@ struct ENWordListView: View {
                         } label: {
                             Image(systemName: "trash")
                         }
-                        .disabled(multiSelection.isEmpty ? true : false)
+                        .disabled(multiSelection.isEmpty)
                     }
                     
                 } else {
@@ -287,14 +286,14 @@ struct ENWordListView: View {
                                 viewModel.words.shuffle()
                             case .byAlphabetic:
                                 viewModel.words.sort { $0.word! < $1.word! }
-                            default:
+                            case .byRegistered:
                                 viewModel.words.sort { ($0.createdAt ?? "0") < ($1.createdAt ?? "0") }
                             }
                         }
                         .onChange(of: speakOn) { value in
                             guard speakOn else { return }
                             speechSynthesizer.speakWordsAndMeanings(viewModel.words, to: "en-US")
-                            speakOn.toggle() // speakOn를 false로
+                            speakOn.toggle()
                         }
                     }
                 }
