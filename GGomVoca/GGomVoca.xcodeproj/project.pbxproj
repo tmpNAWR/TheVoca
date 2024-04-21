@@ -665,7 +665,7 @@
 			};
 			buildConfigurationList = 63DC852C2950312E00461DEB /* Build configuration list for PBXProject "GGomVoca" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
