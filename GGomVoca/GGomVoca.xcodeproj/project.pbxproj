@@ -45,7 +45,6 @@
 		63DC85352950312E00461DEB /* GGomVocaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DC85342950312E00461DEB /* GGomVocaApp.swift */; };
 		63DC85372950312E00461DEB /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DC85362950312E00461DEB /* Persistence.swift */; };
 		63DC853A2950312E00461DEB /* GGomVoca.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63DC85382950312E00461DEB /* GGomVoca.xcdatamodeld */; };
-		63DC85422950312F00461DEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DC85412950312F00461DEB /* Preview Assets.xcassets */; };
 		63EA4ABB29875DE8009392EE /* KOAddNewWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA4AB529875DE8009392EE /* KOAddNewWordView.swift */; };
 		63EA4ABC29875DE8009392EE /* KOWordListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA4AB629875DE8009392EE /* KOWordListViewModel.swift */; };
 		63EA4ABD29875DE8009392EE /* KOEditWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA4AB729875DE8009392EE /* KOEditWordView.swift */; };
@@ -157,7 +156,6 @@
 		63DC85362950312E00461DEB /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		63DC85392950312E00461DEB /* GGomVoca.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GGomVoca.xcdatamodel; sourceTree = "<group>"; };
 		63DC853F2950312F00461DEB /* GGomVoca.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GGomVoca.entitlements; sourceTree = "<group>"; };
-		63DC85412950312F00461DEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63EA4AB529875DE8009392EE /* KOAddNewWordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOAddNewWordView.swift; sourceTree = "<group>"; };
 		63EA4AB629875DE8009392EE /* KOWordListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOWordListViewModel.swift; sourceTree = "<group>"; };
 		63EA4AB729875DE8009392EE /* KOEditWordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KOEditWordView.swift; sourceTree = "<group>"; };
@@ -375,19 +373,10 @@
 				63DC853F2950312F00461DEB /* GGomVoca.entitlements */,
 				63DC85382950312E00461DEB /* GGomVoca.xcdatamodeld */,
 				6367D3662BD5780700C9642A /* Legacy */,
-				63DC85402950312F00461DEB /* Preview Content */,
 				16853AF8299784A5004DB69B /* Localizable.strings */,
 				EA4753F3299C9745002C9358 /* Settings.bundle */,
 			);
 			path = GGomVoca;
-			sourceTree = "<group>";
-		};
-		63DC85402950312F00461DEB /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				63DC85412950312F00461DEB /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		63DC854B2950321D00461DEB /* View */ = {
@@ -707,7 +696,6 @@
 				16853AF6299784A5004DB69B /* Localizable.strings in Resources */,
 				6371E05029530737003A1A08 /* Launch Screen.storyboard in Resources */,
 				EE081AF72995DCCB005A8352 /* GoogleService-Info.plist in Resources */,
-				63DC85422950312F00461DEB /* Preview Assets.xcassets in Resources */,
 				EA4753F4299C9745002C9358 /* Settings.bundle in Resources */,
 				6371E04E29530716003A1A08 /* Assets.xcassets in Resources */,
 			);
@@ -960,7 +948,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"GGomVoca/Preview Content\"";
 				DEVELOPMENT_TEAM = 39J2PNZP7V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1007,7 +994,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"GGomVoca/Preview Content\"";
 				DEVELOPMENT_TEAM = 39J2PNZP7V;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
