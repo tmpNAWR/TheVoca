@@ -8,8 +8,9 @@
 import Foundation
 import CoreData
 import CloudKit
+
 //CoreData Word Type <-> CloudKit Word Type
-extension Word{
+extension Word {
     static let recordType = "Word"
     
     // CKRecord object -> Vocabulary object 변환
@@ -27,12 +28,10 @@ extension Word{
               let vocabularyID = UUID(uuidString: vocabularyIDStr),
               let word = ckRecord["word"] as? String
              // let updatedAt = ckRecord["updatedAt"] as? String
-                
         else {
-            print("from result : \(ckRecord) = fail")
             return nil
         }
-        print("from result : \(ckRecord) = success")
+        
         let newWord = Word(context: PersistenceController.shared.container.viewContext)
         newWord.id = id
         newWord.correctCount = Int16(correctCount)
@@ -46,13 +45,11 @@ extension Word{
         newWord.createdAt = createdAt
         //newWord.updatedAt = updatedAt
         //word.deleatedAt = deleatedAt
+        
         return newWord
     }
     
-   
-    
-    func ckRecord(vocaOfWord : Vocabulary) -> CKRecord{
-        
+    func ckRecord(vocaOfWord : Vocabulary) -> CKRecord {
         let record = CKRecord(recordType: Word.recordType)
         record["id"] = id?.uuidString ?? ""
         record["correctCount"] = correctCount
@@ -64,6 +61,7 @@ extension Word{
         record["createdAt"] = createdAt
         record["vocabularyID"] = vocabularyID?.uuidString
         record["word"] = word
+        
         // Add a reference to the associated vocabulary
         let vocabularyRecordID = CKRecord.ID(recordName: vocaOfWord.id?.uuidString ?? "")
         record["vocabulary"] = CKRecord.Reference(recordID: vocabularyRecordID, action: .deleteSelf)
