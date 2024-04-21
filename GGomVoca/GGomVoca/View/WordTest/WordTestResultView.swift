@@ -63,7 +63,7 @@ struct ResultSummary: View {
     var correctCount: Int {
         var cnt: Int = 0
         for question in vm.testPaper {
-          if question.isCorrect == .Right { cnt += 1 }
+          if question.isCorrect == .right { cnt += 1 }
         }
         return cnt
     }
@@ -72,7 +72,7 @@ struct ResultSummary: View {
     var incorrectCount: Int {
         var cnt: Int = 0
         for question in vm.testPaper {
-          if question.isCorrect != .Right { cnt += 1 }
+          if question.isCorrect != .right { cnt += 1 }
         }
         return cnt
     }
@@ -161,8 +161,8 @@ struct ListCell: View {
     
     var body: some View {
         HStack {
-            Image(systemName: paper.isCorrect == .Right ? "circle" : paper.isCorrect == .Half ? "triangle" : "xmark")
-                .foregroundColor(paper.isCorrect == .Right ? .green : paper.isCorrect == .Half ? .yellow : .red)
+            Image(systemName: paper.isCorrect == .right ? "circle" : paper.isCorrect == .half ? "triangle" : "xmark")
+                .foregroundColor(paper.isCorrect == .right ? .green : paper.isCorrect == .half ? .yellow : .red)
                 .eachDeviceFontSize()
             
             switch testType {
@@ -173,9 +173,9 @@ struct ListCell: View {
                 VStack {
                     if !paper.answer!.isEmpty {
                         Text(paper.answer!)
-                            .strikethrough(paper.isCorrect == .Right ? false : true)
+                            .strikethrough(paper.isCorrect == .right ? false : true)
                     }
-                    if paper.isCorrect != .Right {
+                    if paper.isCorrect != .right {
                         Text(paper.word)
                             .foregroundColor(.red)
                     }
@@ -188,9 +188,9 @@ struct ListCell: View {
                 VStack {
                     if !paper.answer!.isEmpty {
                         Text(paper.answer!)
-                            .strikethrough(paper.isCorrect == .Right ? false : true)
+                            .strikethrough(paper.isCorrect == .right ? false : true)
                     }
-                    if paper.isCorrect != .Right {
+                    if paper.isCorrect != .right {
                         Text(paper.meaning.joined(separator: ", "))
                             .foregroundColor(.red)
                     }

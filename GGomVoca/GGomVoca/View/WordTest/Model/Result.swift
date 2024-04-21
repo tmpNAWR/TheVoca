@@ -8,7 +8,7 @@
 import Foundation
 
 enum Result {
-  case Right
-  case Wrong
-  case Half
+  case right
+  case wrong
+  case half
 }
