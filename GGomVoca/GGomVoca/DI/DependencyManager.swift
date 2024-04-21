@@ -43,6 +43,11 @@ extension DependencyManager {
             return DisplaySplitViewModel(vocabularyList: [], service: service)
         }
         
+        container.register(WordListViewModel.self) { resolver in
+            let service = resolver.resolve(WordListService.self)!
+            return WordListViewModel(service: service)
+        }
+        
         container.register(ENENWordListViewModel.self) { resolver in
             let service = resolver.resolve(WordListService.self)!
             return ENENWordListViewModel(service: service)

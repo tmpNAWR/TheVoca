@@ -6,121 +6,110 @@
 //
 
 import Foundation
+import Combine
 
-class WordListViewModel: ObservableObject {
-  // MARK: CoreData ViewContext
-  var viewContext = PersistenceController.shared.container.viewContext
-  var coreDataRepository = CoredataRepository()
-
-  // MARK: Vocabulary Properties
-  var selectedVocabulary: Vocabulary = Vocabulary()
-  var nationality: String {
-    selectedVocabulary.nationality ?? ""
-  }
-
-  @Published var words: [Word] = []
-
-  // MARK: saveContext
-  func saveContext() {
-    do {
-      try viewContext.save()
-    } catch {
-      print("Error saving managed object context: \(error)")
+final class WordListViewModel: ObservableObject {
+    //MARK: Service
+    private let service: WordListService
+    private var bag: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    init(service: WordListService) {
+        self.service = service
     }
-  }
-
-  // MARK: 일치하는 id의 단어장 불러오기
-  func getVocabulary(vocabularyID: Vocabulary.ID) {
-    selectedVocabulary = coreDataRepository.getVocabularyFromID(vocabularyID: vocabularyID ?? UUID())
-    let allWords = selectedVocabulary.words?.allObjects as? [Word] ?? []
-    words = allWords.filter { $0.deletedAt == "" || $0.deletedAt == nil }
-  }
-
-  // MARK: 단어 삭제하기
-  func deleteWord(word: Word) {
-    word.deletedAt = "\(Date())"
-
-    saveContext()
-
-    if let tempIndex = words.firstIndex(of: word) {
-      words.remove(at: tempIndex)
+    
+    @Published var words: [Word] = []
+    
+    // MARK: Vocabulary Properties
+    var selectedVocabulary: Vocabulary = Vocabulary()
+    let nationality: String = Nationality.EN.rawValue
+    
+    // MARK: 일치하는 id의 단어장 불러오기 Updated
+    func getVocabulary(vocabularyID: Vocabulary.ID) {
+        service.getVocabularyFromId(vocabularyID: vocabularyID)
+            .sink { _ in
+            } receiveValue: { [unowned self] voca in
+                selectedVocabulary = voca
+                
+                guard let allWords = voca.words?.allObjects as? [Word] else { return }
+                let filteredWords = allWords.filter { $0.deletedAt == "" || $0.deletedAt == nil }
+                words = filteredWords.sorted { ($0.createdAt ?? "0") < ($1.createdAt ?? "0") }
+            }
+            .store(in: &bag)
     }
-  }
-
-  // MARK: 단어 수정하기
-  func updateWord(editWord: Word, word: String, meaning: [String], option: String = "") {
-    guard let tempIndex = words.firstIndex(of: editWord) else { return }
-
-    editWord.word = word
-    editWord.meaning = meaning
-    editWord.option = option
-
-    saveContext()
-
-    words[tempIndex] = editWord
-  }
-
-  // MARK: 단어 추가하기
-  func addNewWord(word: String, meaning: [String], option: String = "") {
-    let newWord = Word(context: viewContext)
-    newWord.vocabularyID = selectedVocabulary.id
-    newWord.vocabulary = selectedVocabulary
-    newWord.id = UUID()
-    newWord.word = word
-    newWord.meaning = meaning
-    newWord.option = option
-
-    saveContext()
-
-    words.append(newWord)
-  }
-
-  // MARK: 단어장의 word 배열이 비어있을 때 나타낼 Empty 메세지의 다국어 처리
-  // TODO: Vocabulary 구조체 자체의 property로 넣을 수 없을지?
-  func getEmptyWord() -> String {
-    var emptyMsg: String {
-      switch nationality {
-      case Nationality.KO.rawValue:
-        return "비어 있는"
-      case Nationality.EN.rawValue:
-        return "Empty"
-      case Nationality.JA.rawValue:
-        return "空っぽの"
-      case Nationality.FR.rawValue:
-        return "Vide"
-      case "CH":
-        return "空"
-      case "DE":
-        return "Geleert"
-      case "ES":
-        return "Vacío"
-      case "IT":
-        return "Vida"
-      default :
-        return " "
-      }
+    
+    // MARK: 단어 삭제하기 Updated
+    func deleteWord(word: Word) {
+        service.deleteWord(word: word)
+            .sink { _ in
+            } receiveValue: { [unowned self] _ in
+                service.saveContext()
+                getVocabulary(vocabularyID: selectedVocabulary.id)
+            }
+            .store(in: &bag)
     }
-    return emptyMsg
-  }
-
-  // MARK: Build Data For CSV
-  func buildDataForCSV() -> String? {
-    var fullText = "word,option,meaning\n"
-
-    for word in words {
-      var aLine = ""
-      var tmpMeaning = ""
-      for meaning in word.meaning! {
-        tmpMeaning += meaning
-        tmpMeaning += ","
-      }
-      tmpMeaning = tmpMeaning.multiCheck ? tmpMeaning.reformForCSV : tmpMeaning
-      if word.deletedAt == nil {
-        aLine = "\(String(describing: word.word ?? "")),\(String(describing: word.option ?? "")),\(tmpMeaning)"
-        fullText += aLine + "\n"
-      }
+    
+    // MARK: 단어 수정하기 Updated
+    func updateWord(editWord: Word, word: String, meaning: [String], option: String = "") {
+        service.updateWord(editWord: editWord, word: word, meaning: meaning, option: option)
+            .sink { _ in
+            } receiveValue: { [unowned self] value in
+                service.saveContext()
+                getVocabulary(vocabularyID: selectedVocabulary.id)
+            }
+            .store(in: &bag)
     }
-    return fullText
-  }
-
+    
+    // MARK: 단어 추가하기 Updated
+    func addNewWord(word: String, meaning: [String], option: String = "") {
+        service.postWordData(word: word, meaning: meaning, option: option, voca: selectedVocabulary)
+            .sink { _ in
+            } receiveValue: { [unowned self] word in
+                getVocabulary(vocabularyID: selectedVocabulary.id)
+            }
+            .store(in: &bag)
+    }
+    
+    /// 단어장의 word 배열이 비어있을 때 나타낼 Empty 메세지의 다국어 처리
+    // TODO: Vocabulary 구조체 자체의 property로 넣을 수 없을지?
+    func getEmptyWord() -> String {
+        return switch nationality {
+        case Nationality.KO.rawValue:
+            "비어 있는"
+        case Nationality.EN.rawValue:
+            "Empty"
+        case Nationality.JA.rawValue:
+            "空っぽの"
+        case Nationality.FR.rawValue:
+            "Vide"
+        case "CH":
+            "空"
+        case "DE":
+            "Geleert"
+        case "ES":
+            "Vacío"
+        case "IT":
+            "Vida"
+        default :
+            " "
+        }
+    }
+    
+    // MARK: Build Data For CSV
+    func buildDataForCSV() -> String {
+        var fullText = "word,option,meaning\n"
+        
+        for word in words where word.deletedAt == nil {
+            var meaningString = word.meaning!.joined(separator: ",")
+            
+            if let meanings = word.meaning, meanings.count > 1 {
+                meaningString = meaningString.reformForCSV
+            }
+            
+            let aLine = "\(String(describing: word.word ?? "")),\(String(describing: word.option ?? "")),\(meaningString)"
+            
+            fullText += aLine + "\n"
+        }
+        
+        return fullText
+    }
 }
