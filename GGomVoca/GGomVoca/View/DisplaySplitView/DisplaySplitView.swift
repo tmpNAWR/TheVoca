@@ -192,38 +192,6 @@ struct DisplaySplitView: View {
                     }
                 }
             }
-
-//            MARK: 최근 본 단어장; 최근 본 단어장이 없는 경우 나타나지 않음
-//            if !viewModel.recentVocabularyList.isEmpty {
-//                Section("최근 본 단어장") {
-//                    ForEach(viewModel.recentVocabularyList) { vocabulary in
-//                        VocabularyCell(
-//                            favoriteCompletion: {
-//                                viewModel.getVocabularyData()
-//                            }, deleteCompletion: {
-//                                viewModel.getVocabularyData()
-//                                viewModel.recentVocabularyList = getRecentVocabulary()
-//                            }, vocabulary: vocabulary, editMode: $editMode)
-//                    }
-//                    .onMove(perform: { source, destination in
-//                        move(from: source, to: destination, type: "favorite")
-//                    })
-//                    .onDelete(perform: { source in
-//                        delete(at: source, type: "favorite")
-//                    })
-//                } else {
-//                    VStack {
-//                        HStack {
-//                            VStack(spacing: 4) {
-//                                Text("즐겨찾기 된 단어장이 없습니다.")
-//                                Text("오른쪽으로 밀어 즐겨찾기")
-//                            }
-//                            .horizontalAlignSetting(.center)
-//                        }
-//                    }
-//                    .foregroundColor(.gray)
-//                }
-//            }
             
             // MARK: 한국어
             if !koreanVocabularyIDs.isEmpty {
