@@ -135,7 +135,7 @@ struct FRWordListView: View {
                     .presentationDetents([.height(CGFloat(500))])
             }
             // 단어장 내보내기
-            .fileExporter(isPresented: $isExport, document: CSVFile(initialText: viewModel.buildDataForCSV() ?? ""), contentType: .commaSeparatedText, defaultFilename: "\(navigationTitle)") { result in
+            .fileExporter(isPresented: $isExport, document: CSVFile(initialText: viewModel.buildDataForCSV()), contentType: .commaSeparatedText, defaultFilename: "\(navigationTitle)") { result in
                 switch result {
                 case .success(let url):
                     print("Saved to \(url)")
