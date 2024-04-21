@@ -269,7 +269,6 @@
 				165BA97A29879A090067F217 /* EmptyWordListView.swift */,
 				16E1ECC2298C49E400BA4C9C /* FieldView.swift */,
 				16C665C529936C2700B02C9E /* VLine.swift */,
-				1641015C2995705B005C1854 /* CustomMenu.swift */,
 			);
 			path = CommonView;
 			sourceTree = "<group>";
@@ -288,6 +287,7 @@
 		6367D3662BD5780700C9642A /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
+				1641015C2995705B005C1854 /* CustomMenu.swift */,
 				EAB4FFA82977C8830070941A /* SwipeContainerCell.swift */,
 			);
 			path = Legacy;
