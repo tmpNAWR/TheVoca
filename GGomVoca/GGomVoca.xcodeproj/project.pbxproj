@@ -289,6 +289,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6367D3662BD5780700C9642A /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				EAB4FFA82977C8830070941A /* SwipeContainerCell.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		637A9B05299C12A3007F45F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,6 +380,7 @@
 				6371E04F29530737003A1A08 /* Launch Screen.storyboard */,
 				63DC853F2950312F00461DEB /* GGomVoca.entitlements */,
 				63DC85382950312E00461DEB /* GGomVoca.xcdatamodeld */,
+				6367D3662BD5780700C9642A /* Legacy */,
 				63DC85402950312F00461DEB /* Preview Content */,
 				16853AF8299784A5004DB69B /* Localizable.strings */,
 				EA4753F3299C9745002C9358 /* Settings.bundle */,
@@ -483,7 +492,6 @@
 		EAB4FFA72977C7D60070941A /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
-				EAB4FFA82977C8830070941A /* SwipeContainerCell.swift */,
 				638E2227299B5719006FA3E4 /* HeaderText.swift */,
 				16E1ECC0298B9A0800BA4C9C /* ShakeEffect.swift */,
 			);
